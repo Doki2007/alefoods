@@ -10,19 +10,20 @@ import backgroundImage from '#assets/images/background-1.jpeg';
           About Alefoods
         </h2>
         <p class="text-gray-600 mb-6 leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          At <strong>Alefoods</strong>, we bring the authentic taste of Peru to the world. We specialize in exporting high-quality, natural foods, including our select coffee from Oxapampa and ready-to-eat quinoa from the Andes. Our mission is to deliver exceptional flavor and nutrition while upholding the highest standards of quality and social responsibility.
         </p>
         
         <button class="rounded-full bg-green-600 border-2 border-green-600 px-6 py-3 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white">
-          Learn More
+          <a href="/about-us">Learn More</a>
         </button>
       </div>
 
       <div class="flex-1 w-full order-2 md:order-2">
-        <div 
+        <!-- <div 
           class="w-full h-64 md:h-80 lg:h-96 rounded-lg bg-cover bg-center"
           style={`background-image: url(${backgroundImage.src})`}
-        ></div>
+        /> -->
+        <img src={backgroundImage.src} loading="lazy" alt="Background image about us." class="w-full h-auto object-cover rounded-3xl" />
       </div>
     </div>
   </div>

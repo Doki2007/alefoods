@@ -3,9 +3,8 @@ import Layout from '#layouts/Layout.astro'
 import backgroundImage from '#assets/images/background-2.png'
 ---
 
-<Layout title="Sobre nosotros">
-    <main class="min-h-dvh ">
-        <div class="flex flex-col lg:flex-row">
+<Layout title="About Us - Alefoods">
+        <div class="flex flex-col min-h-dvh lg:flex-row">
             <!-- Imagen - Mobile: altura automática, Desktop: background image en columna -->
             <div class="w-full h-[50vh] sm:h-[60vh] lg:h-auto lg:min-h-screen lg:w-1/2 lg:bg-cover lg:bg-center lg:bg-no-repeat lg:sticky lg:top-0" style={`background-image: url('${backgroundImage.src}')`}>
                 <img src={backgroundImage.src} alt="Imagen de fondo." class="w-full h-full object-cover lg:hidden">
@@ -15,20 +14,20 @@ import backgroundImage from '#assets/images/background-2.png'
                 <div class="max-w-md mx-auto space-y-2 sm:space-y-4 md:space-y-6">
                     <div>
                         <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-6 sm:mb-8">ROOTED IN PERU, CRAFTED WITH CARE.</h1>
-                        <p class="text-sm sm:text-base md:text-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos atque pariatur minus labore maxime aut consectetur, id ipsum hic nulla praesentium quibusdam, dolorem perferendis aliquid tempora, nostrum eius inventore amet maiores? Natus.</p>
+                        <p class="text-sm sm:text-base md:text-lg">At Alefoods, we bring the authentic taste of Peru to the world. We specialize in exporting high-quality, natural foods, including our select coffee from Oxapampa and ready-to-eat quinoa from the Andes. Our mission is to deliver exceptional flavor and nutrition while upholding the highest standards of quality and social responsibility.</p>
                     </div>
 
                     <div>
-                        <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Our Promise</h3>
-                        <p class="text-sm sm:text-base md:text-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos atque pariatur minus labore maxime aut consectetur, id ipsum hic nulla praesentium quibusdam, dolorem perferendis aliquid tempora, nostrum eius inventore amet maiores? Natus.</p>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Our Vision</h3>
+                        <p class="text-sm sm:text-base md:text-lg">To be recognized nationally and internationally by the most demanding markets as a high-quality food exporting company, creating well-being for all our customers, suppliers, and collaborators.</p>
                     </div>
                     <div>
-                        <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Our Promise</h3>
-                        <p class="text-sm sm:text-base md:text-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos atque pariatur minus labore maxime aut consectetur, id ipsum hic nulla praesentium quibusdam, dolorem perferendis aliquid tempora, nostrum eius inventore amet maiores? Natus.</p>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3">Our Mission</h3>
+                        <p class="text-sm sm:text-base md:text-lg">To be exporters of food to the world, meeting our customers’ quality expectations, caring for the environment, and acting with corporate social responsibility.</p>
                     </div>
                     <div class="y-4 sm:y-6 md:y-8">
                         <button class="rounded-xl bg-green-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold hover:bg-green-700 transition-colors">
-                            <a href="/productos">
+                            <a href="/products">
                                 Explore Our Products
                             </a>
                         </button>
@@ -36,6 +35,4 @@ import backgroundImage from '#assets/images/background-2.png'
                 </div>
             </div>
         </div>
-
-    </main>
 </Layout>
