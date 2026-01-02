@@ -1,13 +1,10 @@
 ---
-import Footer from '#components/Footer.astro'
-import Navbar from '#components/Navbar.astro'
-import Layout from '../layouts/Layout.astro'
+import Layout from '#layouts/Layout.astro'
 import backgroundImage from '#assets/images/background-2.png'
 ---
 
 <Layout title="Sobre nosotros">
-    <Navbar/>
-    <main class="min-h-dvh">
+    <main class="min-h-dvh ">
         <div class="flex flex-col lg:flex-row">
             <!-- Imagen - Mobile: altura automática, Desktop: background image en columna -->
             <div class="w-full h-[50vh] sm:h-[60vh] lg:h-auto lg:min-h-screen lg:w-1/2 lg:bg-cover lg:bg-center lg:bg-no-repeat lg:sticky lg:top-0" style={`background-image: url('${backgroundImage.src}')`}>
@@ -41,5 +38,4 @@ import backgroundImage from '#assets/images/background-2.png'
         </div>
 
     </main>
-    <Footer/>
 </Layout>

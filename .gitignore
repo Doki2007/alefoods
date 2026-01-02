@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 ROUTING_DINAMICO_GUIA.md
+# Local Netlify folder
+.netlify

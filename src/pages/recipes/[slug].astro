@@ -1,9 +1,7 @@
 ---
 import { getAllRecipes } from "#pods/recipe-collection/recipe-collection.api.ts";
-import Footer from "../../components/Footer.astro";
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar.astro";
-import RecipesPod from '../../pods/recipe/recipe.pod.astro'
+import Layout from "#layouts/Layout.astro";
+import RecipesPod from '#pods/recipe/recipe.pod.astro'
 
 export async function getStaticPaths(){
   const recipeEntries = await getAllRecipes();
