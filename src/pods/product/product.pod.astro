@@ -1,0 +1,158 @@
+---
+import type { Product } from '#pods/products-collection/products-collection.model.ts'
+
+
+
+interface Props {
+    productEntry: Product;
+}
+
+const { productEntry } = Astro.props;
+---
+
+<section class="min-h-dvh max-w-7xl mx-auto flex flex-col px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+    <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+        <!-- imagenes -->
+        <div class="w-full lg:basis-lg lg:max-w-lg">
+            <!-- main foto 1/2 -->
+            <div class="justify-items-center border border-gray-400 rounded-lg overflow-hidden">
+                <img 
+                    src={productEntry.picture.url} 
+                    alt={productEntry.picture.url}
+                    class="w-full h-auto object-cover aspect-square sm:aspect-4/3 md:aspect-square"
+                >
+                <!-- fotos pequeñas debajo de la main 3-4 -->
+                <div class="flex justify-between gap-2 sm:gap-3 md:gap-4 p-2 sm:p-3 border-t border-green-400"> 
+                    <img src={productEntry.picture.url} alt={productEntry.picture.name} class="w-full h-20 sm:h-24 md:h-28 lg:h-32 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src={productEntry.picture.url} alt={productEntry.picture.name} class="w-full h-20 sm:h-24 md:h-28 lg:h-32 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity">
+                    <img src={productEntry.picture.url} alt={productEntry.picture.name} class="w-full h-20 sm:h-24 md:h-28 lg:h-32 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full lg:px-8 space-y-6 sm:space-y-8">
+            <!-- flex col -->
+            <div class="space-y-4 sm:space-y-6 mb-12 sm:mb-16 md:mb-24">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{productEntry.title}</h1>
+                <p class="text-sm sm:text-base md:text-md">{productEntry.description}</p>
+                <!-- flex row para poner precios -->
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
+                    <span class="text-2xl sm:text-3xl font-bold">S/ {productEntry.price}.00</span>
+                    <span class="line-through text-gray-400 text-lg sm:text-xl md:text-2xl">S/ {productEntry.price}.00</span>
+                    <span class="text-xs sm:text-sm bg-green-300 text-green-700 px-2 py-1 rounded">-18%</span>
+                </div>      
+
+                <!-- flex row para mostrar cantidad, añadir carrito y corazón para añadir a carrito también -->
+                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+                    <!-- div para mostrar menos, cantidad y mas, va flexrow -->
+                    <div class="flex items-center justify-between bg-gray-200 rounded-3xl gap-3 w-full sm:w-auto">
+                        <span class="border border-gray-300 px-3 py-1 sm:px-4 sm:py-2 bg-white rounded-full items-center hover:bg-gray-50 transition-colors cursor-pointer">-</span>
+                        <span class="text-center">1</span>
+                        <span class="border border-gray-300 px-3 py-1 sm:px-4 sm:py-2 bg-white rounded-full items-center hover:bg-gray-50 transition-colors cursor-pointer">+</span>
+                    </div>
+                    <!-- boton>a que lleva icono y Añadir al carrito -->
+                     <button class="flex-1 sm:flex-initial w-full sm:w-auto border-2 border-green-600 rounded-full bg-green-600 text-white py-2.5 sm:py-3 px-6 sm:px-8 hover:bg-green-700 hover:border-green-700 transition-colors">
+                        <div class="flex justify-center items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            <span class="text-sm sm:text-base font-semibold">Añadir al carrito</span>
+                        </div>
+                     </button>
+                     <!-- div con corazon -->
+                      <button class="border-2 border-gray-300 rounded-full p-2.5 sm:p-3 hover:bg-gray-100 transition-colors flex items-center justify-center">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="black" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                      </button>
+                 </div>
+            </div>
+
+            <!-- Informacion nutriciconal -->
+            <div class="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-gray-300/30 rounded-2xl sm:rounded-3xl border border-gray-300/50">
+                    <div class="flex justify-between items-center mb-4 border-b pb-2 cursor-pointer">
+                      <h2 class="text-base sm:text-lg font-bold text-gray-800 pr-2">Información Nutricional (por 100g)</h2>
+                      <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                  
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-16 gap-y-2">
+                      
+                      <div class="flex flex-col gap-2">
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Energía</span>
+                          <span class="text-sm sm:text-base font-medium">352 kcal</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Grasas Totales</span>
+                          <span class="text-sm sm:text-base font-medium">1.1g</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Hierro</span>
+                          <span class="text-sm sm:text-base font-medium">7.5mg</span>
+                        </div>
+                      </div>
+                  
+                      <div class="flex flex-col gap-2">
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Proteínas</span>
+                          <span class="text-sm sm:text-base font-medium">24.6g</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Carbohidratos</span>
+                          <span class="text-sm sm:text-base font-medium">63.4g</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                          <span class="text-sm sm:text-base text-gray-500">Fibra</span>
+                          <span class="text-sm sm:text-base font-medium">10.7g</span>
+                        </div>
+                      </div>
+                  
+                    </div>
+            </div>
+
+            <!-- Beneficios -->
+            <div class="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-gray-300/30 rounded-2xl sm:rounded-3xl border border-gray-300/50">
+                <div class="flex justify-between items-center mb-4 border-b pb-2 cursor-pointer">
+                  <h2 class="text-base sm:text-lg font-bold text-gray-800 pr-2">Beneficios</h2>
+                  <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-16 gap-y-2">
+                  
+                  <div class="flex flex-col gap-2">
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Energía</span>
+                      <span class="text-sm sm:text-base font-medium">352 kcal</span>
+                    </div>
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Grasas Totales</span>
+                      <span class="text-sm sm:text-base font-medium">1.1g</span>
+                    </div>
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Hierro</span>
+                      <span class="text-sm sm:text-base font-medium">7.5mg</span>
+                    </div>
+                  </div>
+              
+                  <div class="flex flex-col gap-2">
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Proteínas</span>
+                      <span class="text-sm sm:text-base font-medium">24.6g</span>
+                    </div>
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Carbohidratos</span>
+                      <span class="text-sm sm:text-base font-medium">63.4g</span>
+                    </div>
+                    <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
+                      <span class="text-sm sm:text-base text-gray-500">Fibra</span>
+                      <span class="text-sm sm:text-base font-medium">10.7g</span>
+                    </div>
+                  </div>
+              
+                </div>
+        </div>
+
+        </div>
+
+    </div>
+</section>

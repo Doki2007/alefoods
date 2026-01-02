@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import { getAllRecipes } from "./recipe-collection.api";
+
+interface Recipes {
+    title: string;
+    slug: string;
+    image?: {
+        url: string;
+        name?: string;
+    }[];
+}
+
+const recipes = await getAllRecipes();
+---
+
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16">
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12">
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-emerald-400 text-gray-800 font-medium text-sm sm:text-base transition-colors hover:bg-emerald-500">
+            All
+        </button>
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
+            Appetizers
+        </button>
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
+            Main Courses
+        </button>
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
+            Desserts
+        </button>
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
+            Vegan
+        </button>
+        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
+            Quick & Easy
+        </button>
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+        {
+            recipes.map(( recipe, i ) => (
+                <a 
+                    href={`/recetas/${recipe.slug}/`}
+                    class="group block"
+                >
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <!-- Recipe Image -->
+                        {recipe.image?.[0] ? (
+                            <div class="relative w-full aspect-square overflow-hidden bg-gray-200">
+                                {/* <Image 
+                                    src={recipe.image[0].url} 
+                                    alt={recipe.image[0].name || recipe.title}
+                                    width={300}  
+                                    height={300}
+                                    loading={i < 3 ? "eager" : "lazy"}
+                                    fetchpriority={i < 3 ? "high" : "low"}
+                                    format="webp" 
+                                    quality="mid" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                /> */}
+                                <img 
+                                    src={recipe.image[0].url} 
+                                    alt={recipe.image[0].name || recipe.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                        ) : (
+                            <div class="w-full aspect-square bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-400 text-sm">No image</span>
+                            </div>
+                        )}
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
+                                {recipe.title}
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            ))
+        }
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center">
+        <button class="px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded-full bg-gray-200 text-gray-700 font-medium text-sm sm:text-base hover:bg-gray-300 transition-colors">
+            Load More Recipes
+        </button>
+    </div>
+</section>

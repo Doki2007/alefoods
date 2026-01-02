@@ -1,0 +1,51 @@
+---
+// Componente BestSellers - Nuestros productos más vendidos
+import logo from '../assets/images/logo.png';
+---
+
+<section class="w-full py-16 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl text-center md:text-4xl font-bold mb-12 text-slate-800">
+      Nuestras Recetas
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1: Quinoa Oil -->
+      <div class=" pb-6">
+        <div class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg">
+          <img src={logo.src} alt="Quinoa Oil" class="w-full h-full object-cover rounded-lg" />
+        </div>
+        <h3 class="text-xl font-bold mb-2 text-slate-800">Coffee</h3>
+        
+        <a href="/recetas/" class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1">
+        View Recipes →
+        </a>
+      </div>
+
+      <!-- Card 2: Maca Powder -->
+      <div class="pb-6">
+        <div class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg">
+          <img src={logo.src} alt="Maca Powder" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="text-xl font-bold mb-2 text-slate-800">Red Quinoa Reaady To Eat</h3>
+        <a href="/recetas/" class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1">
+            View Recipes →
+        </a>
+      </div>
+
+      <!-- Card 3: Chicha Morada Mix -->
+      <div class="pb-6">
+        <div class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg">
+          <img src={logo.src} alt="Chicha Morada Mix" class="w-full h-full object-cover rounded-lg" />
+        </div>
+        <h3 class="text-xl font-bold mb-2 text-slate-800">Chicha Morada Mix</h3>
+        <a href="/recetas/" class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1">
+            View Recipes →
+        </a>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --animate-scroll: scroll 25s linear infinite;
+    @keyframes scroll {
+      to{
+        translate: calc(-4 * 15rem);
+      }
+    }
+  }

@@ -1,0 +1,19 @@
+---
+import Footer from '../../components/Footer.astro';
+import Navbar from '../../components/Navbar.astro';
+import Layout from '../../layouts/Layout.astro';
+import ProductsPod from '../../pods/products-collection/products-collection.pod.astro'
+---
+
+<Layout title="Productos Alefoods">
+    <div class="mb-8 sm:mb-12 md:mb-16 text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
+            Explore Our Natural Products
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover the best of Peruvian natural foods, guaranteed for quality and freshness.
+        </p>
+    </div>
+    
+    <ProductsPod/>
+</Layout>
