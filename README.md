@@ -1,6 +1,6 @@
 # Alefoods — Peruvian superfoods ready for global retail and foodservice
 
-[![Netlify Status]([![Netlify Status](https://api.netlify.com/api/v1/badges/9d475d8c-b907-4345-92ca-a9f77b51bc1b/deploy-status)](https://app.netlify.com/projects/alefoods-2026/deploys))](https://alefoods-2026.netlify.app/)
+[![Netlify deploy status](https://api.netlify.com/api/v1/badges/9d475d8c-b907-4345-92ca-a9f77b51bc1b/deploy-status)](https://app.netlify.com/projects/alefoods-2026/deploys)
 [![CI](https://img.shields.io/badge/CI-pending-lightgrey?logo=githubactions&logoColor=white)](#)
 [![Node](https://img.shields.io/badge/Node-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-proprietary-orange)](#)
