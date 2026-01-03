@@ -1,6 +1,6 @@
 # Alefoods — Peruvian superfoods ready for global retail and foodservice
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/REPLACE_WITH_BADGE_ID/deploy-status)](https://alefoods-2026.netlify.app/)
+[![Netlify Status]([![Netlify Status](https://api.netlify.com/api/v1/badges/9d475d8c-b907-4345-92ca-a9f77b51bc1b/deploy-status)](https://app.netlify.com/projects/alefoods-2026/deploys))](https://alefoods-2026.netlify.app/)
 [![CI](https://img.shields.io/badge/CI-pending-lightgrey?logo=githubactions&logoColor=white)](#)
 [![Node](https://img.shields.io/badge/Node-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-proprietary-orange)](#)
@@ -10,9 +10,9 @@ Digital showroom and lead-gen site for Alefoods: exporting ready-to-eat quinoa, 
 ## Live demo & media
 - Live demo: **[text](https://alefoods-2026.netlify.app/)** (prod) and optionally a preview URL.
 - Screenshots/GIFs: place 2–3 visuals here (Home, Products, Recipe detail). Example placeholders:
-  - `![Home] ![alt text](image-2.png)`
-  - `![Product Detail] ![alt text](image-3.png)`
-  - `![Recipes] ![alt text](image-4.png) ![alt text](image-5.png)`
+  - `![Home] ![alt text](public\repo-assets\image-2.png)`
+  - `![Product Detail] ![alt text](public\repo-assets\image-3.png)`
+  - `![Recipes] ![alt text](public\repo-assets\image-4.png) ![alt text](public\repo-assets\image-5.png)`
 
 ## Highlights
 - **Product catalog** from Content Island with dynamic product detail pages.
