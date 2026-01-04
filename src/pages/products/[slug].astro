@@ -1,18 +1,16 @@
 ---
-import Footer from '#components/Footer.astro';
-import Navbar from '#components/Navbar.astro';
 import Layout from '#layouts/Layout.astro';
 import { getAllProducts } from '#pods/products-collection/products-collection.api.ts';
-import ProductsPod from '#pods/product/product.pod.astro'
+import ProductPod from '#pods/product/product.pod.astro'
 
 
 export async function getStaticPaths(){
-    const productEntries = await getAllProducts();
+  const productEntries = await getAllProducts();
 
-    return productEntries.map( entry => ({
-        params: { slug: entry.slug },
-        props: { entry },
-    }))
+  return productEntries.map( entry => ({
+      params: { slug: entry.slug },
+      props: { entry },
+  }))
 }
 
 const { entry } = Astro.props;
@@ -20,11 +18,7 @@ const { entry } = Astro.props;
 
 
 <Layout title={entry.title}>
-    <Navbar/>
-    <main class="min-h-dvh flex flex-col justify-center items-center">
-      <article>
-        <ProductsPod productEntry={ entry }/>
-      </article>
-  </main>
-  <Footer/>
+  <article>
+    <ProductPod productEntry={ entry }/>
+  </article>
 </Layout>
