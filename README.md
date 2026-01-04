@@ -10,9 +10,9 @@ Digital showroom and lead-gen site for Alefoods: exporting ready-to-eat quinoa, 
 ## Live demo & media
 - Live demo: **[text](https://alefoods-2026.netlify.app/)** (prod) and optionally a preview URL.
 - Screenshots/GIFs: place 2–3 visuals here (Home, Products, Recipe detail). Example placeholders:
-  - `![Home] ![alt text](public\repo-assets\image-2.png)`
-  - `![Product Detail] ![alt text](public\repo-assets\image-3.png)`
-  - `![Recipes] ![alt text](public\repo-assets\image-4.png) ![alt text](public\repo-assets\image-5.png)`
+  - `![alt text](public\repo-assets\image-2.png)`
+  - `![alt text](public\repo-assets\image-3.png)`
+  - `![alt text](public\repo-assets\image-4.png) ![alt text](public\repo-assets\image-5.png)`
 
 ## Highlights
 - **Product catalog** from Content Island with dynamic product detail pages.
