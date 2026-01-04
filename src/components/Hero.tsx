@@ -9,7 +9,7 @@ const Hero = () => {
           className="absolute inset-0 bg-cover bg-center rounded-4xl"
           style={{ backgroundImage: `url(${backgroundImage.src})` }}
         >
-          <img src={backgroundImage.src} alt='Background image.' className="w-full h-auto object-cover" />
+          <img src={backgroundImage.src} alt='Background image.' loading="eager" fetchPriority="high" className="w-full h-auto object-cover" />
         </div>
 
         <div className="absolute inset-0 bg-black/40 rounded-4xl" />
