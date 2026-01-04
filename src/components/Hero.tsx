@@ -1,4 +1,4 @@
-import backgroundImage from "#assets/images/background-1.jpeg"
+import backgroundImage from "#assets/images/background.webp"
 
 
 const Hero = () => {
