@@ -2,88 +2,146 @@
 import { Image } from "astro:assets";
 import { getAllRecipes } from "./recipe-collection.api";
 
-interface Recipes {
-    title: string;
-    slug: string;
-    image?: {
-        url: string;
-        name?: string;
-    }[];
-}
-
 const recipes = await getAllRecipes();
+
+// 1. flatMap: entra en cada receta y crea una lista plana de todas las categorías encontradas.
+// 2. map: de cada objeto CategoryRecipe, solo nos quedamos con el texto '.category'.
+// const allCategoryNames = recipes.flatMap(r => r.category);
+
+// 3. Set: elimina los duplicados (solo deja un "sweet" y un "salty").
+// 4. filter(Boolean): por seguridad, elimina valores vacíos si olvidaste poner una categoría en el CMS.
+const uniqueCategories = [
+  ...new Set(recipes.flatMap((r) => r.category)),
+].filter(Boolean);
 ---
 
-<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16">
+<section
+  class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16"
+>
+  <div
+    class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 "
+  >
+    <button
+      data-filter="all"
+      class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 text-white font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50 capitalize cursor-pointer"
+    >
+      All
+    </button>
+    {
+      uniqueCategories.map((category) => (
+        <button
+          data-filter={category}
+          class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50 capitalize cursor-pointer"
+        >
+          {category}
+        </button>
+      ))
+    }
+  </div>
 
-    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12">
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-emerald-400 text-gray-800 font-medium text-sm sm:text-base transition-colors hover:bg-emerald-500">
-            All
-        </button>
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
-            Appetizers
-        </button>
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
-            Main Courses
-        </button>
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
-            Desserts
-        </button>
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
-            Vegan
-        </button>
-        <button class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50">
-            Quick & Easy
-        </button>
-    </div>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12 items-stretch"
+  >
+    {
+      recipes.map((recipe, i) => (
+        <a
+          href={`/recipes/${recipe.slug}/`}
+          class="recipe-card h-full group block transition-all duration-300"
+          data-category={recipe.category}
+        >
+          <div class="h-full bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            {recipe.image.url ? (
+              <div class="relative w-full aspect-square overflow-hidden bg-gray-200">
+                {/* <Image 
+                    src={recipe.image[0].url} 
+                    alt={recipe.image[0].name || recipe.title}
+                    width={300}  
+                    height={300}
+                    loading={i < 3 ? "eager" : "lazy"}
+                    fetchpriority={i < 3 ? "high" : "low"}
+                    format="webp" 
+                    quality="mid" 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                /> */}
+                <img
+                  src={recipe.image.url}
+                  alt={recipe.image.name}
+                  class="size-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ) : (
+              <div class="w-full aspect-square bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-400 text-sm">No image</span>
+              </div>
+            )}
+            <div class="p-4 sm:p-5">
+              <h3 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
+                {recipe.title}
+              </h3>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-        {
-            recipes.map(( recipe, i ) => (
-                <a 
-                    href={`/recipes/${recipe.slug}/`}
-                    class="group block"
-                >
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <!-- Recipe Image -->
-                        {recipe.image?.[0] ? (
-                            <div class="relative w-full aspect-square overflow-hidden bg-gray-200">
-                                {/* <Image 
-                                    src={recipe.image[0].url} 
-                                    alt={recipe.image[0].name || recipe.title}
-                                    width={300}  
-                                    height={300}
-                                    loading={i < 3 ? "eager" : "lazy"}
-                                    fetchpriority={i < 3 ? "high" : "low"}
-                                    format="webp" 
-                                    quality="mid" 
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                /> */}
-                                <img 
-                                    src={recipe.image[0].url} 
-                                    alt={recipe.image[0].name || recipe.title}
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                        ) : (
-                            <div class="w-full aspect-square bg-gray-200 flex items-center justify-center">
-                                <span class="text-gray-400 text-sm">No image</span>
-                            </div>
-                        )}
-                        <div class="p-4 sm:p-5">
-                            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
-                                {recipe.title}
-                            </h3>
-                        </div>
-                    </div>
-                </a>
-            ))
-        }
-    </div>
-
-    <div class="text-center">
-        <button class="px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded-full bg-gray-200 text-gray-700 font-medium text-sm sm:text-base hover:bg-gray-300 transition-colors">
-            Load More Recipes
-        </button>
-    </div>
 </section>
+
+<script>
+  type FilterValue = string;
+  function initFunction() {
+    // 1. obtenemos los botones y las cards
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const cards = document.querySelectorAll<HTMLElement>(".recipe-card");
+
+
+    function filterCards( buttonFilterValue: FilterValue ): void{
+      cards.forEach(( card ) => {
+          const category = card.getAttribute('data-category');
+
+          if ( !category ) {
+            card.classList.add('hidden');
+            return;
+          }
+
+          if( buttonFilterValue === 'all' || buttonFilterValue === category) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('block');
+          } 
+        });
+    }
+
+    function updateActiveButton( clickedButton: HTMLElement): void{
+      filterButtons.forEach((btn) => {
+        btn.classList.remove('bg-green-500', 'text-white');
+        btn.classList.add('bg-white', 'text-gray-800');
+      });
+
+      clickedButton.classList.remove('bg-white', 'text-gray-800');
+      clickedButton.classList.add('bg-green-500', 'text-white');
+    }
+
+    // 2. añadimos el evento click a cada botón
+    filterButtons.forEach(( button ) => {
+      button.addEventListener("click", (e: MouseEvent) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        if ( !target ) return;
+
+        const buttonFilterValue = target.getAttribute('data-filter');
+        if( !buttonFilterValue ) return;
+
+        filterCards(buttonFilterValue);
+        updateActiveButton(target);
+      });
+    });
+
+  }
+
+  if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFunction);
+    } else {
+      initFunction();
+    }
+</script>
