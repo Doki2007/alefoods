@@ -95,18 +95,18 @@ const { recipeEntry } = Astro.props;
     <!-- Right: Recipe Image with Rating -->
     <div class="w-full lg:w-[450px] lg:shrink-0 lg:ml-auto">
       {
-        recipeEntry.image && recipeEntry.image.length > 0 && (
+        recipeEntry.image && (
           <div class="relative">
             <img
-              src={recipeEntry.image[0].url}
-              alt={recipeEntry.image[0].name || recipeEntry.title}
+              src={recipeEntry.image.url}
+              alt={recipeEntry.image.name}
               class="w-full h-auto rounded-lg object-cover"
             />
             {/*   <!-- Rating Overlay --> */}
             <div class="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-4 sm:py-2 rounded-lg shadow-lg">
               <div class="flex items-center gap-1">
                 <span class="text-yellow-500 font-bold text-xs sm:text-sm">
-                  4.9
+                  {recipeEntry.serving}
                 </span>
                 <div class="flex text-yellow-500">
                   <svg
@@ -118,7 +118,7 @@ const { recipeEntry } = Astro.props;
                   </svg>
                 </div>
                 <span class="text-xs sm:text-sm text-gray-600 hidden sm:inline">
-                  (128 reviews)
+                  (servings)
                 </span>
               </div>
             </div>
