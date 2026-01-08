@@ -23,7 +23,7 @@ const uniqueCategories = [
   >
     <button
       data-filter="all"
-      class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 text-white font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50 capitalize cursor-pointer"
+      class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 border-2 border-green-600 text-white font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
     >
       All
     </button>
@@ -31,7 +31,7 @@ const uniqueCategories = [
       uniqueCategories.map((category) => (
         <button
           data-filter={category}
-          class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white text-gray-800 font-medium text-sm sm:text-base border border-gray-200 transition-colors hover:bg-gray-50 capitalize cursor-pointer"
+          class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white border-2 border-green-500 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
         >
           {category}
         </button>
@@ -40,7 +40,7 @@ const uniqueCategories = [
   </div>
 
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12 items-stretch"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12 items-stretch"
   >
     {
       recipes.map((recipe, i) => (
@@ -115,12 +115,14 @@ const uniqueCategories = [
 
     function updateActiveButton( clickedButton: HTMLElement): void{
       filterButtons.forEach((btn) => {
-        btn.classList.remove('bg-green-500', 'text-white');
-        btn.classList.add('bg-white', 'text-gray-800');
+        // Estado inactivo: bg-white border-green-500 text-black
+        btn.classList.remove('bg-green-500', 'border-green-600', 'text-white');
+        btn.classList.add('bg-white', 'border-green-500', 'text-black');
       });
 
-      clickedButton.classList.remove('bg-white', 'text-gray-800');
-      clickedButton.classList.add('bg-green-500', 'text-white');
+      // Estado activo: bg-green-500 border-green-600 text-white
+      clickedButton.classList.remove('bg-white', 'border-green-500', 'text-black');
+      clickedButton.classList.add('bg-green-500', 'border-green-600', 'text-white');
     }
 
     // 2. añadimos el evento click a cada botón
@@ -136,6 +138,12 @@ const uniqueCategories = [
         updateActiveButton(target);
       });
     });
+
+    // 3. Establecer el botón "All" como activo al inicio
+    const allButton = document.querySelector<HTMLButtonElement>('[data-filter="all"]');
+    if (allButton) {
+      updateActiveButton(allButton);
+    }
 
   }
 

@@ -5,4 +5,5 @@ export const getAllRecipes = async () =>
     await client.getContentList<Recipe>({
         contentType: 'Recipe',
         sort: {'fields.title': 'asc'},
+        pagination: { take: 14 },
     })
