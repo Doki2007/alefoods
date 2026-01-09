@@ -3,16 +3,7 @@ import { Image } from "astro:assets";
 import { getAllRecipes } from "./recipe-collection.api";
 
 const recipes = await getAllRecipes();
-
-// 1. flatMap: entra en cada receta y crea una lista plana de todas las categorías encontradas.
-// 2. map: de cada objeto CategoryRecipe, solo nos quedamos con el texto '.category'.
-// const allCategoryNames = recipes.flatMap(r => r.category);
-
-// 3. Set: elimina los duplicados (solo deja un "sweet" y un "salty").
-// 4. filter(Boolean): por seguridad, elimina valores vacíos si olvidaste poner una categoría en el CMS.
-const uniqueCategories = [
-  ...new Set(recipes.flatMap((r) => r.category)),
-].filter(Boolean);
+const uniqueCategories = [...new Set(recipes.flatMap((r) => r.category))].filter(Boolean);
 ---
 
 <section
@@ -23,7 +14,7 @@ const uniqueCategories = [
   >
     <button
       data-filter="all"
-      class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 border-2 border-green-600 text-white font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
+      class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 border-2 border-green-600 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
     >
       All
     </button>
@@ -31,7 +22,7 @@ const uniqueCategories = [
       uniqueCategories.map((category) => (
         <button
           data-filter={category}
-          class="filter-btn px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white border-2 border-green-500 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
+          class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white border-2 border-green-500 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
         >
           {category}
         </button>
@@ -88,14 +79,14 @@ const uniqueCategories = [
 </section>
 
 <script>
-  type FilterValue = string;
-  function initFunction() {
+
+  function recipeFunction() {
     // 1. obtenemos los botones y las cards
-    const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-btn-recipe");
     const cards = document.querySelectorAll<HTMLElement>(".recipe-card");
 
 
-    function filterCards( buttonFilterValue: FilterValue ): void{
+    function filterCards( buttonFilterValue: string): void{
       cards.forEach(( card ) => {
           const category = card.getAttribute('data-category');
 
@@ -113,7 +104,7 @@ const uniqueCategories = [
         });
     }
 
-    function updateActiveButton( clickedButton: HTMLElement): void{
+    function updateActiveButton( clickedButton: HTMLElement):void{
       filterButtons.forEach((btn) => {
         // Estado inactivo: bg-white border-green-500 text-black
         btn.classList.remove('bg-green-500', 'border-green-600', 'text-white');
@@ -128,7 +119,7 @@ const uniqueCategories = [
     // 2. añadimos el evento click a cada botón
     filterButtons.forEach(( button ) => {
       button.addEventListener("click", (e: MouseEvent) => {
-        const target = e.currentTarget as HTMLButtonElement;
+        const target = e.currentTarget as HTMLElement;
         if ( !target ) return;
 
         const buttonFilterValue = target.getAttribute('data-filter');
@@ -147,9 +138,7 @@ const uniqueCategories = [
 
   }
 
-  if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFunction);
-    } else {
-      initFunction();
-    }
+
+      recipeFunction();
+      document.addEventListener('astro:page-load', recipeFunction);
 </script>
