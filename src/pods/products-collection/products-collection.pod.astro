@@ -1,82 +1,89 @@
 ---
 import { getAllProducts } from "./products-collection.api";
 
-
 const products = await getAllProducts();
+const productCategories = [... new Set(products.flatMap((p) => p.category))].filter(Boolean);
 ---
 
-<section class=" px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16">
+<section class="px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16">
+  <!-- Main Content: Filters + Products Grid -->
+  <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+    <!-- Filter Sidebar -->
+    <aside class="w-full lg:w-64 shrink-0">
+      <h2 class="text-lg font-bold text-gray-800 mb-6">Filter by Category</h2>
+      <div class="bg-white shadow-sm">
+        <ul class="divide-y divide-gray-300 ">
+          <!-- Filter Item: All Products (selected) -->
+          <li >
+            <button
+              type="button"
+              data-filter="all"
+              class="filter-btn w-full text-left px-4 py-3 text-sm font-medium  bg-white text-black hover:bg-green-500 hover:text-white transition-colors capitalize"
+            >
+              all
+            </button>
+          </li>
 
-    <!-- Main Content: Filters + Products Grid -->
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-        <!-- Filter Sidebar -->
-        <aside class="w-full lg:w-64 shrink-0">
-        <h2 class="text-lg font-bold text-gray-800 mb-6">Filter by Category</h2>
-            <div class="bg-white rounded-lg shadow-sm">
-                <ul class="divide-y divide-gray-200">
-                    <!-- Filter Item: All Products (selected) -->
-                    <li>
-                        <button 
-                            type="button"
-                            class="w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
-                        >
-                            All Products
-                        </button>
-                    </li>
+          <!-- Filter Item: Quinua -->
+          {
+            productCategories.map((category)=>(
+              <li>
+                <button
+                  type="button"
+                  data-filter={category}
+                  class="filter-btn w-full text-left px-4 py-3 text-sm font-medium bg-white text-black hover:bg-green-500 hover:text-white transition-colors capitalize "
+                >
+                  {category}
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </aside>
 
-                    <!-- Filter Item: Quinua -->
-                    <li>
-                        <button 
-                            type="button"
-                            class="w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
-                        >
-                            Quinua
-                        </button>
-                    </li>
-
-                    <!-- Filter Item: Café -->
-                    <li>
-                        <button 
-                            type="button"
-                            class="w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
-                        >
-                            Café
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- Products Grid -->
-        <div class="flex-1">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-                <!-- Product Card 1 -->
-                 {
-                    products.map(product => (
-                    <a 
-                        href={`/products/${product.slug}/`} 
-                        class="group block"
+    <!-- Products Grid -->
+    <div class="flex-1">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12"
+      >
+        <!-- Product Card 1 -->
+        {
+          products.map((product) => (
+            <a data-category={product.category} href={`/products/${product.slug}/`} class="product-card group block transition-all duration-300">
+              <div class="bg-white rounded-lg shadow-sm p-4 sm:p-6 border border-gray-200 hover:shadow-md transition-shadow">
+                <div class="relative mb-4 aspect-square overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    src={product.picture.url}
+                    alt={product.picture.name}
+                    class="size-full object-cover"
+                  />
+                </div>
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-gray-800 flex-1">
+                    {product.title}
+                  </h3>
+                </div>
+                <p class="text-sm text-gray-600 mb-4">
+                  {product.shortDescription}
+                </p>
+                <div class="flex items-center gap-2 justify-start">
+                  <span class="material-symbols-outlined text-sm ">
+                    <svg
+                      version="1.0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 512.000000 512.000000"
+                      preserveAspectRatio="xMidYMid meet"
                     >
-                        <div class="bg-white rounded-lg shadow-sm p-4 sm:p-6 border border-gray-200 hover:shadow-md transition-shadow">
-                            <div class="relative mb-4 aspect-square overflow-hidden rounded-lg bg-gray-100">
-                                <img 
-                                    src={product.picture.url} 
-                                    alt={product.picture.name} 
-                                    class="size-full object-cover"
-                                />
-                            </div>
-                            <div class="flex items-start justify-between mb-2">
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-800 flex-1">{product.title}</h3>
-                            </div>
-                            <p class="text-sm text-gray-600 mb-4">{product.shortDescription}</p>
-                            <div class="flex items-center gap-2 justify-start">
-                                <span class="material-symbols-outlined text-sm ">
-                                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 512.000000 512.000000"
-                                    preserveAspectRatio="xMidYMid meet">
-                                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                                        fill="#10b981" stroke="none">
-                                        <path d="M2439 4771 c-72 -28 -103 -57 -231 -211 -67 -80 -126 -151 -132 -157
+                      <g
+                        transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                        fill="#10b981"
+                        stroke="none"
+                      >
+                        <path
+                          d="M2439 4771 c-72 -28 -103 -57 -231 -211 -67 -80 -126 -151 -132 -157
                                         -9 -10 -51 3 -196 59 -158 61 -196 72 -260 76 -102 5 -172 -21 -244 -91 -69
                                         -68 -85 -114 -126 -354 -26 -149 -37 -194 -49 -197 -9 -3 -95 -17 -191 -32
                                         -219 -34 -266 -50 -335 -119 -67 -67 -95 -137 -95 -233 1 -58 11 -94 74 -266
@@ -109,28 +116,30 @@ const products = await getAllProducts();
                                         70 63 155 131 164 131 201 174 230 260 27 83 16 149 -60 359 -36 101 -66 189
                                         -66 196 0 7 66 21 188 40 103 16 211 37 240 48 64 24 145 100 173 163 11 24
                                         36 133 55 242 20 109 39 201 43 205 4 4 90 -24 191 -63 211 -82 274 -93 362
-                                        -65 83 27 122 61 241 206 138 169 159 192 167 183 4 -5 63 -78 132 -164z"/>
-                                        <path d="M3370 3422 c-26 -13 -154 -170 -517 -637 -325 -418 -493 -626 -515
+                                        -65 83 27 122 61 241 206 138 169 159 192 167 183 4 -5 63 -78 132 -164z"
+                        />
+                        <path
+                          d="M3370 3422 c-26 -13 -154 -170 -517 -637 -325 -418 -493 -626 -515
                                         -637 -19 -11 -54 -18 -85 -18 -52 0 -53 1 -279 170 -147 110 -239 172 -261
                                         176 -109 21 -205 -69 -190 -178 3 -21 13 -50 22 -64 25 -38 451 -353 525 -388
                                         62 -30 71 -31 190 -31 121 0 127 1 194 33 39 18 89 48 112 67 62 51 1016 1281
-                                        1027 1325 35 131 -102 243 -223 182z"/>
-                                        </g>
-                                    </svg>
-                                </span>
-                                <span class="text-md font-semibold text-green-800">S/. {product.price }.00 </span>
-                            </div>
-                        </div>
-                    </a>
+                                        1027 1325 35 131 -102 243 -223 182z"
+                        />
+                      </g>
+                    </svg>
+                  </span>
+                  <span class="text-md font-semibold text-green-800">
+                    S/. {product.price}.00{" "}
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
 
-                    
-                    ))
-                }
-
-            </div>
-
-            <!-- Pagination -->
-            <!-- <div class="flex items-center justify-center gap-2 sm:gap-4">
+      <!-- Pagination -->
+      <!-- <div class="flex items-center justify-center gap-2 sm:gap-4">
                 <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     <span class="material-symbols-outlined text-lg">chevron_left</span>
                 </button>
@@ -157,6 +166,69 @@ const products = await getAllProducts();
                     <span class="material-symbols-outlined text-lg">chevron_right</span>
                 </button>
             </div> -->
-        </div>
     </div>
+  </div>
 </section>
+
+<script>
+  type FilterValue = string;
+
+  function initFunction(): void {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.product-card');
+
+    function filterCard(buttonFilterValue: FilterValue): void {
+      cards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        if(!category){
+          card.classList.add('hidden');
+          return;
+        }
+
+        if (buttonFilterValue === 'all' || buttonFilterValue === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.remove('block');
+          card.classList.add('hidden');
+        }
+
+      })
+    }
+    
+    function updateActiveButton(clickedButton: HTMLElement): void {
+      filterButtons.forEach( (btn) => {
+        btn.classList.remove('bg-green-500', 'border-2', 'border-green-600', 'text-white');
+        btn.classList.add('bg-white', 'text-black');
+      })
+
+      clickedButton.classList.remove('bg-white', 'text-black');
+      clickedButton.classList.add('bg-green-500', 'border-2', 'border-green-600', 'text-white');
+    }
+
+    filterButtons.forEach( (button) => {
+      button.addEventListener("click", (e: MouseEvent) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        if (!target) return;
+
+        const buttonFilterValue = target.getAttribute('data-filter');
+        if ( !buttonFilterValue ) return;
+
+        filterCard(buttonFilterValue);
+        updateActiveButton(target);
+      })
+    })
+
+    const allButton = document.querySelector<HTMLButtonElement>('[data-filter="all"]');
+    if (allButton) {
+      updateActiveButton(allButton);
+    }
+
+  }
+
+  if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFunction);
+    } else {
+      initFunction();
+    }
+
+</script>

@@ -22,4 +22,5 @@ export interface Product {
   inStock?: boolean;
   feature: string[];
   nutritionInfo: NutritionInfo[];
+  category: string[];
 }
