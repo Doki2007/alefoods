@@ -33,29 +33,12 @@ const { recipeEntry } = Astro.props;
 
       <!-- Action Buttons -->
       <div
-        class="flex flex-col justify-end sm:flex-row gap-2 sm:gap-3 mb-6 sm:mb-8"
+        class="flex flex-col justify-start sm:flex-row gap-2 sm:gap-3 mb-6 sm:mb-8"
       >
+        
         <button
-          class="bg-teal-600 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-teal-700 transition-colors text-sm sm:text-base"
-        >
-          <svg
-            class="w-4 h-4 sm:w-5 sm:h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-            ></path>
-          </svg>
-          <span class="hidden sm:inline">Imprimir Receta</span>
-          <span class="sm:hidden">Imprimir</span>
-        </button>
-        <button
-          class="bg-white border border-gray-300 text-gray-700 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm sm:text-base"
+          id="copy-link-btn"
+          class="bg-white border border-gray-300 text-gray-700 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm sm:text-base cursor-pointer"
         >
           <svg
             class="w-4 h-4 sm:w-5 sm:h-5"
@@ -70,39 +53,22 @@ const { recipeEntry } = Astro.props;
               d="M8.684 13.342C7.17 14.056 5.69 15.448 4.5 17.5c1.139-2.5 2.5-4.9 4.184-7.158M15.316 13.342c1.514.714 2.994 2.106 4.184 4.158-1.139-2.5-2.5-4.9-4.184-7.158m0 0L12 8l-3.316 3.342M12 8l3.316 3.342M12 8l-3.316 3.342m6.632 0L12 16l-3.316-4.658M12 16l3.316-4.658"
             ></path>
           </svg>
-          Share
+          <span class="copy-link-btn-text">Copy Link</span>
         </button>
-        <button
-          class="bg-white border border-gray-300 text-gray-700 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm sm:text-base"
-        >
-          <svg
-            class="w-4 h-4 sm:w-5 sm:h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            ></path>
-          </svg>
-        </button>
+       
       </div>
     </div>
 
     <!-- Right: Recipe Image with Rating -->
     <div class="w-full lg:w-[450px] lg:shrink-0 lg:ml-auto">
       {
-        recipeEntry.image && recipeEntry.image.length > 0 && (
+        recipeEntry.image && (
           <div class="relative">
             <img
-              src={recipeEntry.image[0].url}
-              alt={recipeEntry.image[0].name || recipeEntry.title}
-              class="w-full h-auto rounded-lg object-cover"
+              src={recipeEntry.image.url}
+              alt={recipeEntry.image.name}
+              class="w-full h-auto  rounded-lg object-cover"
             />
-            {/*   <!-- Rating Overlay --> */}
             <div class="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-4 sm:py-2 rounded-lg shadow-lg">
               <div class="flex items-center gap-1">
                 <span class="text-yellow-500 font-bold text-xs sm:text-sm">
@@ -137,34 +103,20 @@ const { recipeEntry } = Astro.props;
         <ul class="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
           {
             recipeEntry.ingredientCollection.map((ingredient) => (
-              <li class="flex items-start gap-2 sm:gap-3">
+              <li class="ingredient-item flex items-start gap-2 sm:gap-3">
                 <input
-                  type="radio"
-                  class="mt-1 w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500 shrink-0"
+                  type="checkbox"
+                  name="ingredient"
+                  class="checkbox mt-1 w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500 shrink-0"
                 />
-                <span class="text-gray-800 text-sm sm:text-base">
+                <span class="ingredient-name text-gray-800 text-sm sm:text-base">
                   {ingredient}
                 </span>
               </li>
             ))
           }
         </ul>
-        <!-- Recommended Ingredient Section
-                <div class="bg-white/30 rounded-lg p-4 mt-6">
-                    <p class="text-xs text-gray-600 uppercase mb-2">Ingrediente recomendado</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-amber-600 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <p class="font-semibold text-gray-800">Sillao Alefoods Premium</p>
-                            <p class="text-sm text-gray-600">Fermentación natural</p>
-                        </div>
-                        <a href="#" class="text-teal-700 font-semibold hover:text-teal-800">Comprar ahora →</a>
-                    </div>
-                </div> -->
+       
       </div>
     </div>
 
@@ -195,28 +147,7 @@ const { recipeEntry } = Astro.props;
             {recipeEntry.prepTime} min
           </p>
         </div>
-        <div class="bg-teal-50 p-3 sm:p-4 rounded-lg items-center text-center">
-          <div class="flex items-center gap-1 sm:gap-2 mb-1 justify-center">
-            <svg
-              class="w-4 h-4 sm:w-5 sm:h-5 text-teal-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-              ></path>
-            </svg>
-            <span
-              class="font-semibold text-gray-800 text-xs sm:text-sm md:text-base"
-              >Cooking</span
-            >
-          </div>
-          <p class="text-gray-600 text-sm sm:text-base">15 min</p>
-        </div>
+        
         <div class="bg-teal-50 p-3 sm:p-4 rounded-lg items-center text-center">
           <div class="flex items-center gap-1 sm:gap-2 mb-1 justify-center">
             <svg
@@ -304,3 +235,44 @@ const { recipeEntry } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  function copyLink(){
+  const copyLinkBtn = document.getElementById('copy-link-btn') as HTMLButtonElement;
+  const copyLinkBtnText = document.querySelector('.copy-link-btn-text') as HTMLElement;
+  
+  if (!copyLinkBtn) return;
+
+  const originalButton = copyLinkBtnText.textContent || 'Copy Link';
+
+    copyLinkBtn.addEventListener('click', () => {
+      const url = window.location.href
+      navigator.clipboard.writeText(url);
+
+      copyLinkBtnText.textContent = 'Link copied!';
+
+      setTimeout(() => {
+        copyLinkBtnText.textContent = originalButton;
+      }, 2000);
+    })
+
+  }
+
+  function handleIngredients(){
+    const ingredients = document.querySelectorAll('.ingredient-item');
+    
+    ingredients.forEach(item => {
+      const cb   = item.querySelector('.checkbox') as HTMLInputElement;
+      const name = item.querySelector('.ingredient-name') as HTMLElement;
+
+      cb.addEventListener('change', () => {
+        name.classList.toggle('line-through', cb.checked);
+      });
+    });
+  }
+
+  copyLink();
+  handleIngredients()
+  document.addEventListener('astro:page-load', copyLink);
+  document.addEventListener('astro:page-load', handleIngredients);
+</script>
