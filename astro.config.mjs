@@ -1,12 +1,19 @@
 // @ts-check
 import { defineConfig, envField } from 'astro/config';
-import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
+import sitemap from '@astrojs/sitemap';
+
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  site: "https://alefoods-2026.netlify.app", // ✅ Ya lo tienes
+  output: 'static', // ✅ Ya lo tienes
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404'), // Excluir página 404
+    }),
+  ],
 
   server: {
     host: true, // Permite acceso desde otros dispositivos en la red local
