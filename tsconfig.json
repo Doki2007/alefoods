@@ -12,7 +12,5 @@
     "paths": {
       "#*": ["*"]
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
   }
 }
