@@ -12,38 +12,40 @@ const bestSellers = await getBestSellers();
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        bestSellers.map( p => (
+        bestSellers.map((p) => (
           // <div class="group  rounded-lg shadow-lg bg-blue-400/80 shadow-gray-300 transition-all hover:bg-blue-300 border border-gray-200 hover:border-gray-300 ">
           <div class="group rounded-lg bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 transition">
             <div class="relative aspect-auto mb-4 w-full min-h-48  bg-amber-100 flex items-center justify-center overflow-hidden rounded-lg">
               {/* <span class="absolute top-2 left-2 bg-amber-400 text-xs px-2 py-1 rounded-full z-10">Best Seller</span> */}
-              <span class="absolute top-2 left-2 bg-red-100 text-red-800 text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
-              Best Seller
-            </span>
+              <span class="absolute top-2 left-2 bg-red-100 text-red-800 text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10">
+                Best Seller
+              </span>
               <img
                 src={p.picture[0].url}
                 class="w-full h-auto object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out bg-gradient-to-top from-black/40 to-transparent"
-                loading="lazy"  decoding="async"
+                loading="lazy"
+                decoding="async"
                 alt={p.title}
               />
             </div>
             <div class="text-left pb-5 px-5">
-              <h3 class="text-xl font-bold mb-2 text-slate-800 leading-tightleading-tight">{p.title}</h3>
-              <p class="text-sm text-gray-600 mb-4">
-                {p.shortDescription}
-              </p>
+              <h3 class="text-xl font-bold mb-2 text-slate-800 leading-tightleading-tight">
+                {p.title}
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">{p.shortDescription}</p>
               {/* <a
                 href={`/products/${p.slug}`} aria-label={`Ver detalle de ${p.title}`}
                 class="text-sm font-semibold text-green-700 inline-flex items-center gap-1 hover:underline hover:bg-green-700 hover:text-white px-3 py-1 rounded-md transition-colors"
               >
                 View Details →
               </a> */}
-              <a href={`/products/${p.slug}`}
-                class="inline-flex items-center gap-1 text-sm font-semibold text-red-700 hover:bg-red-700 hover:text-white px-3 py-1.5 rounded-md transition">
+              <a
+                href={`/products/${p.slug}`}
+                class="inline-flex items-center gap-1 text-sm font-semibold text-red-700 hover:bg-red-700 hover:text-white px-3 py-1.5 rounded-md transition"
+              >
                 View Details →
               </a>
             </div>
-            
           </div>
         ))
       }
