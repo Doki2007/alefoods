@@ -1,37 +1,63 @@
 ---
+import CheckIcon2 from "#assets/icons/CheckIcon2.astro";
 import { getAllProducts } from "./products-collection.api";
 
 const products = await getAllProducts();
-const productCategories = [... new Set(products.flatMap((p) => p.category))].filter(Boolean);
+const productCategories = [
+  ...new Set(products.flatMap((p) => p.category)),
+].filter(Boolean);
+
+const siteUrl = Astro.site ? Astro.site.toString() : "https://www.alefoods.pe";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Alefoods Products",
+  description: "Premium Peruvian cooked quinoa and export quality coffee.",
+  numberOfItems: products.length,
+  itemListElement: products.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Product",
+      name: product.title,
+      url: new URL(`/products/${product.slug}/`, siteUrl).toString(),
+      image: new URL(product.picture[0]?.url || "", siteUrl).toString(),
+      description: product.shortDescription,
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "PEN",
+        price: product.price,
+      },
+    },
+  })),
+};
 ---
 
+<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+
 <section class="px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16">
-  <!-- Main Content: Filters + Products Grid -->
   <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-    <!-- Filter Sidebar -->
     <aside class="w-full lg:w-64 shrink-0">
       <h2 class="text-lg font-bold text-gray-800 mb-6">Filter by Category</h2>
       <div class="bg-white shadow-sm">
-        <ul class="divide-y divide-gray-300 ">
-          <!-- Filter Item: All Products (selected) -->
-          <li >
+        <ul class="divide-y divide-gray-300">
+          <li>
             <button
               type="button"
               data-filter="all"
-              class="filter-btn-product w-full text-left px-4 py-3 text-sm font-medium  bg-white text-black hover:bg-green-500 hover:text-white transition-colors capitalize"
+              class="filter-btn-product w-full text-left px-4 py-3 text-sm border-2 border-green-700 font-semibold bg-white text-black transition-colors capitalize cursor-pointer ease-in-out duration-250 hover:border-2 hover:border-green-600 hover:bg-green-500 hover:text-white"
             >
               all
             </button>
           </li>
-
-          <!-- Filter Item: Quinua -->
           {
-            productCategories.map((category)=>(
+            productCategories.map((category) => (
               <li>
                 <button
                   type="button"
                   data-filter={category}
-                  class="filter-btn-product w-full text-left px-4 py-3 text-sm font-medium bg-white text-black hover:bg-green-500 hover:text-white transition-colors capitalize "
+                  class="filter-btn-product w-full text-left px-4 py-3 text-sm border-2 border-green-700 font-semibold  bg-white text-black transition-colors capitalize cursor-pointer ease-in-out duration-250 hover:border-2 hover:border-green-600 hover:bg-green-500 hover:text-white"
                 >
                   {category}
                 </button>
@@ -47,16 +73,19 @@ const productCategories = [... new Set(products.flatMap((p) => p.category))].fil
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12"
       >
-        <!-- Product Card 1 -->
         {
-          products.map((product) => (
-            <a data-category={product.category} href={`/products/${product.slug}/`} class="product-card group block transition-all duration-300">
+          products.map((product, i) => (
+            <a
+              data-category={product.category}
+              href={`/products/${product.slug}/`}
+              class="product-card group block transition-all duration-300"
+            >
               <div class="bg-white rounded-lg shadow-sm p-4 sm:p-6 border border-gray-200 hover:shadow-md transition-shadow">
                 <div class="relative mb-4 aspect-square overflow-hidden rounded-lg bg-gray-100">
                   <img
-                    src={product.picture.url}
-                    alt={product.picture.name}
-                    class="size-full object-cover"
+                    src={product.picture[0]?.url || ""}
+                    alt={product.picture[0]?.name || product.title}
+                    class="size-full object-cover bg-white"
                   />
                 </div>
                 <div class="flex items-start justify-between mb-2">
@@ -69,64 +98,7 @@ const productCategories = [... new Set(products.flatMap((p) => p.category))].fil
                 </p>
                 <div class="flex items-center gap-2 justify-start">
                   <span class="material-symbols-outlined text-sm ">
-                    <svg
-                      version="1.0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 512.000000 512.000000"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <g
-                        transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                        fill="#10b981"
-                        stroke="none"
-                      >
-                        <path
-                          d="M2439 4771 c-72 -28 -103 -57 -231 -211 -67 -80 -126 -151 -132 -157
-                                        -9 -10 -51 3 -196 59 -158 61 -196 72 -260 76 -102 5 -172 -21 -244 -91 -69
-                                        -68 -85 -114 -126 -354 -26 -149 -37 -194 -49 -197 -9 -3 -95 -17 -191 -32
-                                        -219 -34 -266 -50 -335 -119 -67 -67 -95 -137 -95 -233 1 -58 11 -94 74 -266
-                                        l73 -199 -56 -46 c-31 -26 -102 -84 -158 -129 -113 -91 -153 -141 -177 -222
-                                        -20 -68 -20 -112 0 -180 25 -85 62 -128 221 -260 81 -68 154 -128 160 -134 10
-                                        -9 -3 -51 -59 -196 -61 -158 -72 -196 -76 -260 -5 -103 21 -173 93 -245 69
-                                        -69 113 -84 350 -125 105 -17 192 -34 194 -36 2 -2 19 -93 36 -202 19 -114 41
-                                        -219 53 -245 29 -66 109 -141 177 -166 103 -39 161 -31 389 53 l200 73 128
-                                        -158 c138 -171 182 -208 273 -234 80 -24 152 -15 235 27 58 30 79 50 203 198
-                                        77 91 144 164 150 164 7 -1 96 -34 199 -73 163 -61 196 -71 252 -71 94 0 165
-                                        29 231 95 69 69 84 113 125 352 26 149 37 194 49 197 9 3 95 17 191 31 218 34
-                                        266 51 335 120 67 67 95 137 95 233 -1 58 -11 94 -74 266 l-73 200 158 128
-                                        c87 71 169 143 183 161 81 107 83 278 4 389 -11 16 -88 86 -171 155 -84 69
-                                        -158 131 -164 137 -10 9 3 51 59 196 61 158 72 196 76 260 5 103 -21 173 -93
-                                        245 -69 69 -113 84 -352 125 -148 26 -194 37 -197 49 -3 9 -17 95 -32 191 -34
-                                        219 -50 266 -119 335 -67 67 -137 95 -233 95 -58 -1 -94 -11 -266 -74 l-200
-                                        -73 -126 156 c-131 161 -173 199 -249 226 -59 20 -174 19 -232 -4z m263 -462
-                                        c131 -162 171 -197 258 -225 81 -27 149 -15 358 60 101 36 189 66 196 66 8 0
-                                        21 -62 40 -187 16 -104 38 -212 48 -241 24 -64 100 -145 163 -173 24 -11 133
-                                        -36 242 -55 109 -20 201 -39 205 -43 4 -4 -24 -90 -63 -191 -81 -211 -93 -275
-                                        -65 -360 28 -85 60 -122 227 -265 87 -74 159 -138 158 -143 0 -4 -70 -63 -155
-                                        -131 -164 -131 -201 -174 -230 -260 -27 -83 -16 -149 60 -359 36 -101 66 -189
-                                        66 -196 0 -8 -62 -21 -187 -40 -104 -16 -212 -38 -241 -48 -64 -24 -145 -100
-                                        -173 -163 -11 -24 -36 -133 -55 -242 -20 -109 -39 -201 -43 -205 -4 -4 -90 24
-                                        -191 63 -211 81 -275 93 -360 65 -85 -28 -122 -60 -265 -227 -74 -87 -138
-                                        -159 -143 -158 -4 0 -61 68 -127 150 -135 170 -170 202 -252 231 -91 32 -155
-                                        22 -371 -56 -101 -36 -189 -66 -196 -66 -8 0 -21 62 -40 188 -35 231 -51 277
-                                        -121 347 -68 68 -110 83 -345 125 -102 18 -188 36 -192 39 -4 4 24 90 63 191
-                                        81 211 93 275 65 360 -28 85 -62 125 -228 266 -87 74 -158 138 -157 142 0 4
-                                        70 63 155 131 164 131 201 174 230 260 27 83 16 149 -60 359 -36 101 -66 189
-                                        -66 196 0 7 66 21 188 40 103 16 211 37 240 48 64 24 145 100 173 163 11 24
-                                        36 133 55 242 20 109 39 201 43 205 4 4 90 -24 191 -63 211 -82 274 -93 362
-                                        -65 83 27 122 61 241 206 138 169 159 192 167 183 4 -5 63 -78 132 -164z"
-                        />
-                        <path
-                          d="M3370 3422 c-26 -13 -154 -170 -517 -637 -325 -418 -493 -626 -515
-                                        -637 -19 -11 -54 -18 -85 -18 -52 0 -53 1 -279 170 -147 110 -239 172 -261
-                                        176 -109 21 -205 -69 -190 -178 3 -21 13 -50 22 -64 25 -38 451 -353 525 -388
-                                        62 -30 71 -31 190 -31 121 0 127 1 194 33 39 18 89 48 112 67 62 51 1016 1281
-                                        1027 1325 35 131 -102 243 -223 182z"
-                        />
-                      </g>
-                    </svg>
+                    <CheckIcon2 />
                   </span>
                   <span class="text-md font-semibold text-green-800">
                     S/. {product.price}.00{" "}
@@ -137,35 +109,6 @@ const productCategories = [... new Set(products.flatMap((p) => p.category))].fil
           ))
         }
       </div>
-
-      <!-- Pagination -->
-      <!-- <div class="flex items-center justify-center gap-2 sm:gap-4">
-                <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                    <span class="material-symbols-outlined text-lg">chevron_left</span>
-                </button>
-                
-                <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors">
-                    1
-                </button>
-                
-                <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors">
-                    2
-                </button>
-                
-                <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors">
-                    3
-                </button>
-                
-                <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors">
-                    4
-                </button>
-                
-                <span class="px-2 text-gray-400">...</span>
-                
-                <button class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors">
-                    <span class="material-symbols-outlined text-lg">chevron_right</span>
-                </button>
-            </div> -->
     </div>
   </div>
 </section>
@@ -174,59 +117,71 @@ const productCategories = [... new Set(products.flatMap((p) => p.category))].fil
   type FilterValue = string;
 
   function productFunction(): void {
-    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn-product');
-    const cards = document.querySelectorAll<HTMLElement>('.product-card');
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>(
+      ".filter-btn-product",
+    );
+    const cards = document.querySelectorAll<HTMLElement>(".product-card");
 
     function filterCard(buttonFilterValue: FilterValue): void {
       cards.forEach((card) => {
-        const category = card.getAttribute('data-category');
-        if(!category){
-          card.classList.add('hidden');
+        const category = card.getAttribute("data-category");
+        if (!category) {
+          card.classList.add("hidden");
           return;
         }
 
-        if (buttonFilterValue === 'all' || buttonFilterValue === category) {
-          card.classList.remove('hidden');
+        if (buttonFilterValue === "all" || buttonFilterValue === category) {
+          card.classList.remove("hidden");
         } else {
-          card.classList.remove('block');
-          card.classList.add('hidden');
+          card.classList.remove("block");
+          card.classList.add("hidden");
         }
-
-      })
+      });
     }
-    
+
     function updateActiveButton(clickedButton: HTMLElement): void {
-      filterButtons.forEach( (btn) => {
-        btn.classList.remove('bg-green-500', 'border-2', 'border-green-600', 'text-white');
-        btn.classList.add('bg-white', 'text-black');
-      })
+      filterButtons.forEach((btn) => {
+        btn.classList.remove(
+          "bg-green-500",
+          "border-2",
+          "border-green-600",
+          "text-white",
+        );
+        btn.classList.add("bg-white", "text-black");
+        btn.setAttribute("aria-pressed", "false");
+      });
 
-      clickedButton.classList.remove('bg-white', 'text-black');
-      clickedButton.classList.add('bg-green-500', 'border-2', 'border-green-600', 'text-white');
+      clickedButton.classList.remove("bg-white", "text-black");
+      clickedButton.classList.add(
+        "bg-green-500",
+        "border-2",
+        "border-green-600",
+        "text-white",
+      );
+      clickedButton.setAttribute("aria-pressed", "true");
     }
 
-    filterButtons.forEach( (button) => {
+    filterButtons.forEach((button) => {
       button.addEventListener("click", (e: MouseEvent) => {
         const target = e.currentTarget as HTMLButtonElement;
         if (!target) return;
 
-        const buttonFilterValue = target.getAttribute('data-filter');
-        if ( !buttonFilterValue ) return;
+        const buttonFilterValue = target.getAttribute("data-filter");
+        if (!buttonFilterValue) return;
 
         filterCard(buttonFilterValue);
         updateActiveButton(target);
-      })
-    })
+      });
+    });
 
-    const allButton = document.querySelector<HTMLButtonElement>('[data-filter="all"]');
+    const allButton = document.querySelector<HTMLButtonElement>(
+      '[data-filter="all"]',
+    );
     if (allButton) {
       updateActiveButton(allButton);
     }
-
   }
 
-  
   productFunction();
-  document.addEventListener('astro:page-load', productFunction);
-
+  document.addEventListener("astro:page-load", productFunction);
 </script>

@@ -4,39 +4,83 @@ import Navbar from "#components/Navbar.astro";
 import { ClientRouter } from "astro:transitions";
 import backgroundImage from "#assets/images/background.webp";
 import "#styles/global.css";
+import SEO from "#components/SEO.astro";
 
 interface Props {
   title: string;
   fullWidth?: boolean;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  robots?: string;
 }
 
-const { title, fullWidth = false } = Astro.props;
+const {
+  title,
+  fullWidth = false,
+  description = "Alefoods offers premium cooked quinoa and Peruvian coffee ready to enjoy. Healthy, natural, and 100% Peruvian products.",
+  image,
+  article,
+  robots = "index,follow",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    
-    <link rel="preload" href={backgroundImage.src} as="image" fetchpriority="high" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      article={article}
+      robots={robots}
+    />
+
+    <link
+      rel="preload"
+      href={backgroundImage.src}
+      as="image"
+      fetchpriority="high"
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{title}</title>
-    
+
     <ClientRouter />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alefoods",
+        "url": "https://www.alefoods.pe",
+        "logo": "https://www.alefoods.pe/images/logo1.webp",
+        "description": "Export of cooked quinoa and Peruvian coffee.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+51-932-120-023",
+          "contactType": "sales",
+          "areaServed": ["PE"],
+          "availableLanguage": ["English", "Spanish"]
+        },
+        "sameAs": [
+          "https://www.facebook.com/alefoodsperu",
+          "https://www.tiktok.com/@irides.pe",
+          "https://www.instagram.com/irides.pe"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <Navbar/>
+    <Navbar />
     <main>
-      {fullWidth ? (
-        <slot />
-      ) : (
-        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      {
+        fullWidth ? (
           <slot />
-        </div>
-      )}
+        ) : (
+          <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <slot />
+          </div>
+        )
+      }
     </main>
     <Footer />
   </body>

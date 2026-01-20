@@ -1,24 +1,27 @@
 ---
-import Layout from '#layouts/Layout.astro';
-import { getAllProducts } from '#pods/products-collection/products-collection.api.ts';
-import ProductPod from '#pods/product/product.pod.astro'
+import Layout from "#layouts/Layout.astro";
+import { getAllProducts } from "#pods/products-collection/products-collection.api.ts";
+import ProductPod from "#pods/product/product.pod.astro";
 
-
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const productEntries = await getAllProducts();
 
-  return productEntries.map( entry => ({
-      params: { slug: entry.slug },
-      props: { entry },
-  }))
+  return productEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
 ---
 
-
-<Layout title={entry.title}>
+<Layout
+  title={entry.title}
+  description={entry.shortDescription}
+  image={entry.picture[0]?.url}
+  article={true}
+>
   <article>
-    <ProductPod productEntry={ entry }/>
+    <ProductPod productEntry={entry} />
   </article>
 </Layout>

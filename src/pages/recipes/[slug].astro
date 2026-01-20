@@ -1,24 +1,27 @@
 ---
 import { getAllRecipes } from "#pods/recipe-collection/recipe-collection.api.ts";
 import Layout from "#layouts/Layout.astro";
-import RecipesPod from '#pods/recipe/recipe.pod.astro'
+import RecipesPod from "#pods/recipe/recipe.pod.astro";
 
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const recipeEntries = await getAllRecipes();
 
-  return recipeEntries.map( entry => ({
-    params: { slug: entry.slug},
+  return recipeEntries.map((entry) => ({
+    params: { slug: entry.slug },
     props: { entry },
-  }))
+  }));
 }
 
 const { entry } = Astro.props;
 ---
 
-
-
-  <Layout title={entry.title}>
-    <article>
-      <RecipesPod recipeEntry={ entry }/>
-    </article>
-  </Layout>
+<Layout
+  title={entry.title}
+  description={`Learn how to cook ${entry.title} using Alefoods Quinoa. A healthy, easy, and delicious Peruvian dish.`}
+  image={entry.image.url}
+  article={true}
+>
+  <article>
+    <RecipesPod recipeEntry={entry} />
+  </article>
+</Layout>

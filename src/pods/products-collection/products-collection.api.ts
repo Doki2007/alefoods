@@ -8,3 +8,13 @@ export const getAllProducts = async () =>
         includeRelatedContent: true,
         sort: {'fields.title': 'asc'},
     })
+
+export const getBestSellers = async () => {
+    const allProducts = await getAllProducts();
+    const bestSellerSlugs = [
+        "quinua-roja-cocida", 
+        "quinua-blanca-cocida",
+        "cafe-exportacion"
+    ];
+    return allProducts.filter(p => bestSellerSlugs.includes(p.slug));
+    };
