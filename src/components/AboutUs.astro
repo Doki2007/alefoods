@@ -18,11 +18,10 @@ import backgroundImage from "#assets/images/background.webp";
           responsibility.
         </p>
 
-        <button
-          class="rounded-full bg-green-600 border-2 border-green-600 px-6 py-3 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white"
-        >
-          <a href="/about-us">Learn More</a>
-        </button>
+        <a href="/about-us"
+          class="rounded-full bg-green-600 border-2 border-green-600 px-6 py-3 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white">
+            Learn More
+        </a>
       </div>
 
       <div class="flex-1 w-full order-2 md:order-2">
@@ -33,7 +32,7 @@ import backgroundImage from "#assets/images/background.webp";
         <img
           src={backgroundImage.src}
           loading="lazy"
-          alt="Background image about us."
+          alt="About us image."
           class="w-full h-auto object-cover rounded-3xl"
         />
       </div>

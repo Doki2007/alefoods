@@ -1,4 +1,8 @@
 ---
+import CheckIcon from "#assets/icons/CheckIcon.astro";
+import ClockIcon from "#assets/icons/ClockIcon.astro";
+import HeartIcon from "#assets/icons/HeartIcon.astro";
+
 ---
 
 <section class="w-full py-16 px-6 bg-white">
@@ -8,12 +12,10 @@
     </h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-8">
-      <div class="text-center p-4 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+      <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
         <div class="mb-4">
           <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
+            <CheckIcon class={'size-8 text-green-600'} />
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Peruvian Heritage</h3>
@@ -25,9 +27,7 @@
       <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
         <div class="mb-4">
           <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
+            <ClockIcon class={'size-8 text-green-600'}/>
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Ready To Eat</h3>
@@ -39,9 +39,7 @@
       <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
         <div class="mb-4">
           <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
+            <HeartIcon class={'size-8 text-green-600'}/>
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">100% Natural</h3>
@@ -53,9 +51,7 @@
       <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
         <div class="mb-4">
           <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
+            <HeartIcon class={'size-8 text-green-600'}/>
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Daily Energy</h3>

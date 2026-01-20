@@ -1,18 +1,22 @@
 ---
-import AboutUs from '#components/AboutUs.astro';
-import BestSellers from '#components/BestSellers.astro';
-import WhereToFindUs from '#components/WhereToFindUs.astro';
-import Hero from '#components/Hero';
-import Recipes from '#components/Recipes.astro';
-import WhyUs from '#components/WhyUs.astro';
-import Layout from '#layouts/Layout.astro';
+import AboutUs from "#components/AboutUs.astro";
+import BestSellers from "#components/BestSellers.astro";
+import WhereToFindUs from "#components/WhereToFindUs.astro";
+import Hero from "#components/Hero.astro";
+import Recipes from "#components/Recipes.astro";
+import WhyUs from "#components/WhyUs.astro";
+import Layout from "#layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Alefoods." >
-        <Hero/>
-        <BestSellers/>
-        <Recipes/>
-        <WhyUs/>
-        <AboutUs/>
-        <WhereToFindUs/>
+<Layout
+  title="Welcome to Alefoods."
+  fullWidth
+  description="Discover the best Peruvian foods. Ready-to-eat cooked Quinoa (Red & White) and premium roasted Coffee. Direct from Peru to your table."
+>
+  <Hero />
+  <BestSellers />
+  <Recipes />
+  <WhyUs />
+  <AboutUs />
+  <WhereToFindUs />
 </Layout>
