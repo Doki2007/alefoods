@@ -1,63 +1,58 @@
 ---
-import logo from "#assets/images/logo1.webp";
+import PinIcon from "#assets/icons/PinIcon.astro";
+import { logoList, marketList } from "#data/markets.ts";
+
+const scrollLogo = [...logoList, ...logoList];
 ---
 
-<section class="w-full py-16 px-4 sm:px-6 lg:px-12">
-  <h2 class="text-3xl text-center md:text-4xl font-bold mb-12 text-slate-800">
-    Where To Find Us
-  </h2>
-  <div class="max-w-6xl mx-auto overflow-hidden">
+<section class="my-12 md:my-16">
+  <div class="mb-10">
+    <h2 class="text-3xl text-center md:text-4xl font-bold text-slate-800">
+      Where To Find Us
+    </h2>
+    <p class="my-4 text-center text-lg text-gray-600 max-w-xl mx-auto">
+      You can find our products in leading retailt stores across Lima and major
+      districs.
+    </p>
+  </div>
+  <div class="mb-12 overflow-hidden">
     <div
-      class="grid grid-flow-col auto-cols-[8rem] sm:auto-cols-[10rem] md:auto-cols-[12rem] gap-6 items-center animate-scroll"
+      class="grid grid-flow-col auto-cols-[8rem] sm:auto-cols-[10rem] md:auto-cols-[12rem] gap-4 items-center animate-scroll"
     >
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
-      <img
-        src={logo.src}
-        loading="lazy"
-        alt="Marca Alefoods"
-        class="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80"
-      />
+      {
+        scrollLogo.map((info) => (
+          <div class="w-20 sm:w-24 md:w-32 aspect-square flex items-center justify-center bg-[#fdfcf7] rounded">
+            <img
+              src={info.image.src}
+              alt={info.alt}
+              loading="lazy"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto py-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+      {
+        marketList.flatMap((market) => (
+          <div class="flex flex-col items-start justify-start border border-gray-300 p-4 rounded-2xl bg-white/80">
+            <h3 class="text-lg font-bold mb-2">{market.name}</h3>
+            <div class="flex flex-col items-start mt-1">
+              {market.districts.map((district) => (
+                <div class="flex justify-center items-center gap-2 mb-2 pl-3">
+                  <PinIcon class={"size-4"} />
+                  <span class="text-sm font-medium text-gray-700">
+                    {district}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
