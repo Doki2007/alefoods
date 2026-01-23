@@ -9,14 +9,20 @@ import Layout from "#layouts/Layout.astro";
 ---
 
 <Layout
-  title="Welcome to Alefoods."
+  title="Welcome"
   fullWidth
   description="Discover the best Peruvian foods. Ready-to-eat cooked Quinoa (Red & White) and premium roasted Coffee. Direct from Peru to your table."
 >
   <Hero />
-  <BestSellers />
+  <div class="pt-10">
+    <BestSellers />
+  </div>
   <Recipes />
-  <WhyUs />
-  <AboutUs />
-  <WhereToFindUs />
+  <div class="my-9">
+    <WhyUs />
+    <AboutUs />
+  </div>
+  <div class="mt-16">
+    <WhereToFindUs />
+  </div>
 </Layout>
