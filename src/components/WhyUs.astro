@@ -1,21 +1,46 @@
 ---
 import CheckIcon from "#assets/icons/CheckIcon.astro";
 import ClockIcon from "#assets/icons/ClockIcon.astro";
+import EnergyIcon from "#assets/icons/EnergyIcon.astro";
+import GreenBlob from "#assets/icons/GreenBlob.astro";
 import HeartIcon from "#assets/icons/HeartIcon.astro";
-
+import YellowBlob from "#assets/icons/YellowBlob.astro";
 ---
 
-<section class="w-full py-16 px-6 bg-white">
+<section class="relative w-full pt-16 px-6">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-      Why Choose Alefoods?
-    </h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-8">
-      <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+    <div class="absolute inset-0 pointer-events-none z-0">
+      <div class="absolute top-80 left-30 opacity-80" aria-hidden="true">
+        <GreenBlob class="w-full h-auto" />
+      </div>
+      <div class="absolute top-40 left-110 opacity-80" aria-hidden="true">
+        <YellowBlob class="w-full h-auto" />
+      </div>
+      <div class="absolute top-78 right-110 opacity-80" aria-hidden="true">
+        <GreenBlob class="w-full h-auto" />
+      </div>
+      <div class="absolute top-40 right-30 opacity-80" aria-hidden="true">
+        <YellowBlob class="w-full h-auto" />
+      </div>
+    </div>
+
+    <div class="flex flex-col text-center mb-12 gap-5">
+      <h2 class="text-3xl md:text-4xl font-bold">Why Choose Alefoods</h2>
+      <p class="text-center text-lg text-gray-600 max-w-lg mx-auto">
+        Cooked quinoa and coffee for brewing, made for everyday consumption.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div
+        class="text-center p-6 rounded-lg border bg-white/50 border-gray-200 inset-shadow-sm shadow-green-100
+        hover:shadow-lg hover:shadow-green-200 hover:bg-white transition-shadow z-10 group"
+      >
         <div class="mb-4">
-          <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <CheckIcon class={'size-8 text-green-600'} />
+          <div
+            class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-all duration-200 ease-in-out"
+          >
+            <CheckIcon class={"size-8 text-green-600"} />
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Peruvian Heritage</h3>
@@ -24,42 +49,54 @@ import HeartIcon from "#assets/icons/HeartIcon.astro";
         </p>
       </div>
 
-      <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+      <div
+        class="text-center p-6 rounded-lg border bg-white/50 border-gray-200 inset-shadow-sm shadow-[#D97706]/10 hover:shadow-lg hover:shadow-[#D97706]/20 hover:bg-white transition-shadow z-10 group"
+      >
         <div class="mb-4">
-          <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <ClockIcon class={'size-8 text-green-600'}/>
+          <div
+            class="w-16 h-16 mx-auto bg-[#D97706]/10 rounded-full flex items-center justify-center group-hover:bg-[#D97706]/20 transition-all duration-200 ease-in-out"
+          >
+            <ClockIcon class={"size-8 text-[#D97706]"} />
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Ready To Eat</h3>
         <p class="text-sm text-gray-600">
-           Pre-cooked quinoa, ready to serve and enjoy instantly.
+          Pre-cooked quinoa, ready to serve and enjoy instantly.
         </p>
       </div>
 
-      <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+      <div
+        class="text-center p-6 rounded-lg border bg-white/50 border-gray-200 inset-shadow-sm shadow-green-100
+        hover:shadow-lg hover:shadow-green-200 hover:bg-white transition-shadow z-10 group"
+      >
         <div class="mb-4">
-          <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <HeartIcon class={'size-8 text-green-600'}/>
+          <div
+            class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-all duration-200 ease-in-out"
+          >
+            <HeartIcon class={"size-8 text-green-600"} />
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">100% Natural</h3>
         <p class="text-sm text-gray-600">
-           Gluten-free and no artificial additives.
+          Gluten-free and no artificial additives.
         </p>
       </div>
 
-      <div class="text-center p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+      <div
+        class="text-center p-6 rounded-lg border bg-white/50 border-gray-200 inset-shadow-sm shadow-[#D97706]/10 hover:shadow-lg hover:shadow-[#D97706]/20 hover:bg-white transition-shadow z-10 group"
+      >
         <div class="mb-4">
-          <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <HeartIcon class={'size-8 text-green-600'}/>
+          <div
+            class="w-16 h-16 mx-auto bg-[#D97706]/10 rounded-full flex items-center justify-center group-hover:bg-[#D97706]/20 transition-all duration-200 ease-in-out"
+          >
+            <EnergyIcon class={"size-8 text-[#D97706]"} />
           </div>
         </div>
         <h3 class="text-xl font-semibold mb-2">Daily Energy</h3>
         <p class="text-sm text-gray-600">
-           Fuel your day with our premium coffee and quinoa.
+          Fuel your day with our premium coffee and quinoa.
         </p>
       </div>
     </div>
   </div>
 </section>
-

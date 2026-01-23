@@ -2,7 +2,7 @@
 import backgroundImage from "#assets/images/background.webp";
 ---
 
-<section class="w-full py-16 px-6 bg-white">
+<section class="w-full py-16 px-6">
   <div class="max-w-6xl mx-auto">
     <div class="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
       <div class="flex-1 order-1 md:order-1">
@@ -18,17 +18,15 @@ import backgroundImage from "#assets/images/background.webp";
           responsibility.
         </p>
 
-        <a href="/about-us"
-          class="rounded-full bg-green-600 border-2 border-green-600 px-6 py-3 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white">
-            Learn More
+        <a
+          href="/about-us"
+          class="rounded-full bg-green-600 border-2 border-green-600 px-6 py-3 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white"
+        >
+          Learn More
         </a>
       </div>
 
       <div class="flex-1 w-full order-2 md:order-2">
-        <!-- <div 
-          class="w-full h-64 md:h-80 lg:h-96 rounded-lg bg-cover bg-center"
-          style={`background-image: url(${backgroundImage.src})`}
-        /> -->
         <img
           src={backgroundImage.src}
           loading="lazy"

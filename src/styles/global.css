@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
-@theme {
-    --animate-scroll: scroll 25s linear infinite;
+  body {
+    background-color: #fdfcf7;
+  }
+
+  @theme {
+    --animate-scroll: scroll 52s linear infinite;
     
     @keyframes scroll {
       to{
-        translate: calc(-4 * 15rem);
+        translate: calc(-8 * 12rem - 7rem);
       }
     }
   }

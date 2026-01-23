@@ -1,76 +1,43 @@
 ---
-import logo from "#assets/images/logo1.webp";
+import { getIndexRecipes } from "#pods/recipe-collection/recipe-collection.api.ts";
+
+const indexRecipes = await getIndexRecipes();
 ---
 
-<section class="w-full py-16 px-6 bg-white">
+<section class="w-full py-16 px-6">
   <div class="max-w-6xl mx-auto">
     <h2 class="text-3xl text-center md:text-4xl font-bold mb-12 text-slate-800">
       Our Recipes
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="pb-6">
-        <div
-          class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg"
-        >
-          <img
-            src={logo.src}
-            loading="lazy"
-            alt="Quinoa Oil"
-            class="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <h3 class="text-xl font-bold mb-2 text-slate-800">Coffee</h3>
+      {
+        indexRecipes.map((recipes) => (
+          <div class="pb-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+            <div class="mb-4 flex items-center justify-center overflow-hidden group">
+              <img
+                src={recipes.image.url}
+                loading="lazy"
+                alt={recipes.title}
+                class="w-full h-auto object-center aspect-4/3 transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
 
-        <a
-          href="/recipes"
-          class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1"
-        >
-          View Recipes →
-        </a>
-      </div>
+            <div class="px-6">
+              <h3 class="text-2xl font-bold mb-3 text-slate-900 leading-tight">
+                {recipes.title}
+              </h3>
 
-      <div class="pb-6">
-        <div
-          class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg"
-        >
-          <img
-            src={logo.src}
-            loading="lazy"
-            alt="Maca Powder"
-            class="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <h3 class="text-xl font-bold mb-2 text-slate-800">
-          Red Quinoa Ready To Eat
-        </h3>
-        <a
-          href="/recipes"
-          class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1"
-        >
-          View Recipes →
-        </a>
-      </div>
-
-      <div class="pb-6">
-        <div
-          class="mb-4 h-48 flex items-center justify-center overflow-hidden rounded-lg"
-        >
-          <img
-            src={logo.src}
-            loading="lazy"
-            alt="Chicha Morada Mix"
-            class="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <h3 class="text-xl font-bold mb-2 text-slate-800">Chicha Morada Mix</h3>
-        <a
-          href="/recipes"
-          class="text-green-600 font-medium text-sm hover:text-green-700 transition-colors inline-flex items-center gap-1"
-        >
-          View Recipes →
-        </a>
-      </div>
+              <a
+                href={`/recipes/${recipes.slug}`}
+                class="text-green-600 font-semibold text-base hover:text-green-800 transition-colors inline-flex items-center gap-2"
+              >
+                View Recipes →
+              </a>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
