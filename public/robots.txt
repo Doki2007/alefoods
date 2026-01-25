@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alefoods-2026.netlify.app/sitemap-index.xml
+Sitemap: https://alefoods.netlify.app/sitemap-index.xml

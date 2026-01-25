@@ -7,17 +7,17 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://alefoods-2026.netlify.app", // ✅ Ya lo tienes
-  output: 'static', // ✅ Ya lo tienes
+  site: "https://alefoods.netlify.app",
+  output: 'static', 
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'), // Excluir página 404
+      filter: (page) => !page.includes('/404'),  
     }),
   ],
 
   server: {
-    host: true, // Permite acceso desde otros dispositivos en la red local
-    port: 4321, // Puerto por defecto de Astro (opcional)
+    host: true,  
+    port: 4321,  
   },
   adapter: netlify({
   }),
