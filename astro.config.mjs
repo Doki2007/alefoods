@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import netlify from '@astrojs/netlify';
+import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 
@@ -19,7 +19,7 @@ export default defineConfig({
     host: true,  
     port: 4321,  
   },
-  adapter: netlify({
+  adapter: vercel({
   }),
   vite: {
     plugins: /** @type {any}  */ ([tailwindcss()])
