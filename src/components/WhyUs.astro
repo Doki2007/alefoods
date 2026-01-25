@@ -2,40 +2,11 @@
 import CheckIcon from "#assets/icons/CheckIcon.astro";
 import ClockIcon from "#assets/icons/ClockIcon.astro";
 import EnergyIcon from "#assets/icons/EnergyIcon.astro";
-import GreenBlob from "#assets/icons/GreenBlob.astro";
 import HeartIcon from "#assets/icons/HeartIcon.astro";
-import YellowBlob from "#assets/icons/YellowBlob.astro";
 ---
 
 <section class="relative w-full pt-16 px-6">
   <div class="max-w-6xl mx-auto gap-y-10">
-    <div class="absolute inset-0 pointer-events-none z-0">
-      <div
-        class="absolute top-45 lg:top-80 lg:left-30 opacity-80"
-        aria-hidden="true"
-      >
-        <GreenBlob class="w-full h-auto" />
-      </div>
-      <div
-        class="absolute top-100 right-0 lg:right-0 lg:top-40 lg:left-110 opacity-80"
-        aria-hidden="true"
-      >
-        <YellowBlob class="w-full h-auto" />
-      </div>
-      <div
-        class="absolute bottom-75 lg:bottom-0 lg:right-110 lg:top-78 opacity-80"
-        aria-hidden="true"
-      >
-        <GreenBlob class="w-full h-auto" />
-      </div>
-      <div
-        class="absolute bottom-25 right-0 lg:top-40 lg:right-25 opacity-80"
-        aria-hidden="true"
-      >
-        <YellowBlob class="w-full h-auto" />
-      </div>
-    </div>
-
     <div class="flex flex-col text-center mb-12 gap-5">
       <h2 class="text-3xl md:text-4xl font-bold">Why Choose Alefoods</h2>
       <p class="text-center text-lg text-gray-600 max-w-lg mx-auto">
@@ -43,7 +14,9 @@ import YellowBlob from "#assets/icons/YellowBlob.astro";
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 select-none"
+    >
       <div
         class="text-center p-6 rounded-lg border bg-white/50 border-gray-200 inset-shadow-sm shadow-green-100
         hover:shadow-lg hover:shadow-green-200 hover:bg-white transition-shadow z-10 group"

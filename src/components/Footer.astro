@@ -3,17 +3,21 @@ import FacebookIcon from "#assets/icons/FacebookIcon.astro";
 import InstagramIcon from "#assets/icons/InstagramIcon.astro";
 import TiktokIcon from "#assets/icons/TiktokIcon.astro";
 import logo1 from "#assets/images/logo1.webp";
-import facebookIcon from "#assets\svg\facebookIcon.svg";
 ---
 
 <footer
   class="w-full text-white py-12 px-6 bg-[#0D2C54] bg-radial-[at_45%_20%] from-[#15437f] to-[#0D2C54]"
 >
   <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-8 gap-6">
       <div class="flex flex-col items-center sm:items-end">
         <div class="flex gap-2 mb-4">
-          <img src={logo1.src} alt="Alefoods Logo" class="h-22" />
+          <img
+            src={logo1.src}
+            alt="Alefoods Logo"
+            class="h-full w-33"
+            loading="lazy"
+          />
         </div>
         <p class="text-gray-400 text-sm items-center sm:items-end">
           Peruvian nutrition that inspires trust.
@@ -21,7 +25,7 @@ import facebookIcon from "#assets\svg\facebookIcon.svg";
       </div>
 
       <div class="flex flex-col items-center sm:items-end">
-        <h3 class="text-lg font-bold mb-2">Quick Links</h3>
+        <h3 class="text-lg font-bold lg:mb-2">Quick Links</h3>
         <ul class="flex flex-col items-center sm:items-end">
           <li>
             <a
@@ -59,11 +63,11 @@ import facebookIcon from "#assets\svg\facebookIcon.svg";
       </div>
 
       <div class="flex flex-col items-center sm:items-end">
-        <h3 class="text-lg font-bold mb-2">Contact Us</h3>
+        <h3 class="text-lg font-bold lg:mb-2">Contact Us</h3>
         <ul class="text-gray-400 flex flex-col items-center sm:items-end">
-          <li>Email: info@alefoods.pe</li>
-          <li>Phone: +51 987 654 321</li>
           <li>Location: Lima, Perú</li>
+          <li>Phone: +51 987 654 321</li>
+          <li>Email: info@alefoods.pe</li>
         </ul>
       </div>
 
