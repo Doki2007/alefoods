@@ -8,18 +8,30 @@ import YellowBlob from "#assets/icons/YellowBlob.astro";
 ---
 
 <section class="relative w-full pt-16 px-6">
-  <div class="max-w-6xl mx-auto">
+  <div class="max-w-6xl mx-auto gap-y-10">
     <div class="absolute inset-0 pointer-events-none z-0">
-      <div class="absolute top-80 left-30 opacity-80" aria-hidden="true">
+      <div
+        class="absolute top-45 lg:top-80 lg:left-30 opacity-80"
+        aria-hidden="true"
+      >
         <GreenBlob class="w-full h-auto" />
       </div>
-      <div class="absolute top-40 left-110 opacity-80" aria-hidden="true">
+      <div
+        class="absolute top-100 right-0 lg:right-0 lg:top-40 lg:left-110 opacity-80"
+        aria-hidden="true"
+      >
         <YellowBlob class="w-full h-auto" />
       </div>
-      <div class="absolute top-78 right-110 opacity-80" aria-hidden="true">
+      <div
+        class="absolute bottom-75 lg:bottom-0 lg:right-110 lg:top-78 opacity-80"
+        aria-hidden="true"
+      >
         <GreenBlob class="w-full h-auto" />
       </div>
-      <div class="absolute top-40 right-30 opacity-80" aria-hidden="true">
+      <div
+        class="absolute bottom-25 right-0 lg:top-40 lg:right-25 opacity-80"
+        aria-hidden="true"
+      >
         <YellowBlob class="w-full h-auto" />
       </div>
     </div>
