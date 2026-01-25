@@ -5,7 +5,6 @@ import { RESEND_API_KEY,FROM_EMAIL, TO_EMAIL } from 'astro:env/server';
 
 const resend = new Resend(RESEND_API_KEY);
 
-console.log('📁 Astro cargó src/actions/index.ts');
 
 export const server = {
     send: defineAction({
