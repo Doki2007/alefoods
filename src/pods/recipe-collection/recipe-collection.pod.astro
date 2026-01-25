@@ -66,6 +66,7 @@ const recipeListSchema = {
                   <img
                     src={recipe.image.url}
                     alt={recipe.image.name}
+                    fetchpriority="high"
                     class="size-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -75,9 +76,9 @@ const recipeListSchema = {
                 </div>
               )}
               <div class="p-4 sm:p-5">
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
+                <h2 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
                   {recipe.title}
-                </h3>
+                </h2>
               </div>
             </div>
           </a>

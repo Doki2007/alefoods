@@ -5,7 +5,6 @@ import backgroundImage from "#assets/images/background-2.webp";
 
 <Layout title="About Us - Alefoods" fullWidth>
   <div class="flex flex-col min-h-dvh lg:flex-row">
-    <!-- Imagen - Mobile: altura automática, Desktop: background image en columna -->
     <div
       class="w-full h-[50vh] sm:h-[60vh] lg:h-auto lg:min-h-screen lg:w-1/2 lg:bg-cover lg:bg-center lg:bg-no-repeat lg:sticky lg:top-0"
       style={`background-image: url('${backgroundImage.src}')`}
@@ -16,9 +15,8 @@ import backgroundImage from "#assets/images/background-2.webp";
         class="w-full h-full object-cover lg:hidden"
       />
     </div>
-    <!-- Contenido - Mobile: altura automática, Desktop: puede extenderse -->
     <div
-      class="w-full lg:w-1/2 flex flex-col justify-center bg-green-200 px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20"
+      class="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20"
     >
       <div class="max-w-md mx-auto space-y-2 sm:space-y-4 md:space-y-6">
         <div>
@@ -58,9 +56,10 @@ import backgroundImage from "#assets/images/background-2.webp";
           </p>
         </div>
         <div class="mt-4 sm:mt-6 md:mt-8">
-          <a href="/products"
+          <a
+            href="/products"
             aria-label="Explore Our Products"
-            class="rounded-xl bg-green-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold cursor-pointer transition-all duration-250 ease-in-out border-2 border-green-600 hover:text-black  hover:border-2 hover:border-green-600  hover:bg-green-500"
+            class="rounded-lg bg-green-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold cursor-pointer transition-colors duration-250 ease-in-out border-2 border-green-600 hover:border-2 hover:border-[#0D2C54]/60 hover:bg-[#0D2C54]/60 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Explore Our Products
           </a>

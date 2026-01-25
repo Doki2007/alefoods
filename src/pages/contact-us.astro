@@ -86,7 +86,7 @@ import Layout from "#layouts/Layout.astro";
             <button
               type="submit"
               id="submit-btn"
-              class="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="w-full sm:w-auto px-6 py-3 bg-green-600 hover:bg-[#0D2C54]/60 text-black font-semibold rounded-lg transition-colors duration-250 disabled:opacity-50 disabled:cursor-not-allowed border-2 border-green-600 cursor-pointer ease-in-out hover:border-2 hover:border-[#0D2C54]/60 hover:text-white"
             >
               Send Message
             </button>
@@ -101,17 +101,17 @@ import Layout from "#layouts/Layout.astro";
         <div class="flex gap-4 items-start">
           <div class="shrink-0">
             <div
-              class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+              class="w-12 h-12 bg-[#0D2C54] rounded-full flex items-center justify-center"
             >
               <EmailIcon class={"w-6 h-6 text-white"} />
             </div>
           </div>
           <div class="text-left">
-            <h3 class="text-lg font-bold text-slate-800 mb-1">Email</h3>
+            <h2 class="text-lg font-bold text-slate-800 mb-1">Email</h2>
             <p class="text-sm text-gray-600 mb-1">Our team is here to help.</p>
             <a
               href="mailto:info@alefoods.pe"
-              class="text-sm text-green-500 hover:text-green-600"
+              class="text-sm text-[#0D2C54] hover:text-[#0D2C54]/80"
             >
               info@alefoods.pe
             </a>
@@ -121,17 +121,17 @@ import Layout from "#layouts/Layout.astro";
         <div class="flex gap-4 items-start">
           <div class="shrink-0">
             <div
-              class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+              class="w-12 h-12 bg-[#0D2C54] rounded-full flex items-center justify-center"
             >
               <PhoneIcon class={"size-6 text-white"} />
             </div>
           </div>
           <div class="text-left">
-            <h3 class="text-lg font-bold text-slate-800 mb-1">Phone</h3>
+            <h2 class="text-lg font-bold text-slate-800 mb-1">Phone</h2>
             <p class="text-sm text-gray-600 mb-1">Mon-Fri from 9am to 6pm.</p>
             <a
               href="tel:+51987654321"
-              class="text-sm text-green-500 hover:text-green-600"
+              class="text-sm text-[#0D2C54] hover:text-[#0D2C54]/80"
             >
               +51 987 654 321
             </a>
@@ -139,32 +139,38 @@ import Layout from "#layouts/Layout.astro";
         </div>
 
         <div class="pt-4 text-left">
-          <h3 class="text-lg font-bold text-slate-800 mb-4">Follow Us</h3>
-          <div class="flex gap-3 justify-start">
+          <h2 class="text-lg font-bold text-slate-800 mb-4">Follow Us</h2>
+          <div class="flex gap-3">
             <a
               aria-label="Facebook"
-              href="https://www.facebook.com/alefoodsperu/"
+              href="https://www.facebook.com/alefoodsperu"
               target="_blank"
-              class="w-10 h-10 bg-slate-800 rounded flex items-center justify-center hover:bg-slate-700 transition-colors"
+              class="w-10 h-10 bg-[#0D2C54] rounded-full flex items-center justify-center transition-colors ease-out duration-350 hover:bg-white hover:border-[#0D2C54] hover:border-2 group"
             >
-              <FacebookIcon class={"size-7 text-white"} />
+              <FacebookIcon
+                class={"size-5 text-white  group-hover:text-[#0D2C54]"}
+              />
             </a>
-
             <a
               aria-label="TikTok"
               href="https://www.tiktok.com/@irides.pe"
               target="_blank"
-              class="w-10 h-10 bg-slate-800 rounded flex items-center justify-center hover:bg-slate-700 transition-colors"
+              class="w-10 h-10 bg-[#0D2C54] rounded-full flex items-center justify-center transition-colors ease-out duration-350 hover:bg-white hover:border-[#0D2C54] hover:border-2 group"
             >
-              <TiktokIcon class={"size-7 text-white"} color={"#FFFFFF"} />
+              <TiktokIcon
+                class={"size-5 text-white  group-hover:text-[#0D2C54]"}
+                color={"#0D2C54"}
+              />
             </a>
             <a
               aria-label="Instagram"
-              href="https://www.instagram.com/irides.pe/"
+              href="https://www.instagram.com/irides.pe"
               target="_blank"
-              class="w-10 h-10 bg-slate-800 rounded flex items-center justify-center hover:bg-slate-700 transition-colors"
+              class="w-10 h-10 bg-[#0D2C54] rounded-full flex items-center justify-center transition-colors ease-out duration-350 hover:bg-white hover:border-[#0D2C54] hover:border-2 group"
             >
-              <InstagramIcon class={"size-7 text-white"} />
+              <InstagramIcon
+                class={"size-5 text-white  group-hover:text-[#0D2C54]"}
+              />
             </a>
           </div>
         </div>
@@ -172,6 +178,7 @@ import Layout from "#layouts/Layout.astro";
     </div>
   </div>
 </Layout>
+
 <script>
   import { actions } from "astro:actions";
   import { isInputError } from "astro:actions";
