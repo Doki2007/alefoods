@@ -20,20 +20,28 @@ const encodedMessage = encodeURIComponent(message);
 
     <ul class="flex gap-5 items-center">
       <li class="hidden sm:flex text-sm font-medium">
-        <a href="/products" aria-label="Products">Products</a>
+        <a href="/products" title="View Products" aria-label="Products"
+          >Products</a
+        >
       </li>
       <li class="hidden sm:flex text-sm font-medium">
-        <a href="/recipes" aria-label="Recipes">Recipes</a>
+        <a href="/recipes" title="Explore Recipes" aria-label="Recipes"
+          >Recipes</a
+        >
       </li>
       <li class="hidden sm:flex text-sm font-medium">
-        <a href="/contact-us" aria-label="Contact Us">Contact Us</a>
+        <a href="/contact-us" title="Contact Us" aria-label="Contact Us"
+          >Contact Us</a
+        >
       </li>
       <li class="hidden sm:flex text-sm font-medium">
-        <a href="/about-us" aria-label="About Us">About Us</a>
+        <a href="/about-us" title="About Us" aria-label="About Us">About Us</a>
       </li>
 
       <a
         href={`https://wa.me/${phone}?text=${encodedMessage}`}
+        aria-label="Shop Now on WhatsApp"
+        title="Shop Now on WhatsApp"
         target="_blank"
         class="flex justify-center items-center gap-2 rounded-full bg-green-600 border-2 border-green-600 px-3 py-2 font-semibold text-black cursor-pointer transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white"
       >
