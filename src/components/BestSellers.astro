@@ -6,9 +6,11 @@ const bestSellers = await getBestSellers();
 
 <section class="w-full py-16 px-6">
   <div class="max-w-6xl mx-auto pb-8">
-    <div class="flex flex-col text-center mb-12 gap-5">
+    <div class="flex flex-col text-center mb-12 gap-5 text-[#6F4E37]">
       <h2 class="text-3xl md:text-4xl font-bold">Best Sellers</h2>
-      <p class="text-center text-lg text-gray-600 max-w-lg mx-auto">
+      <p
+        class="text-center text-lg max-w-lg mx-auto font-semibold text-[#A0826D]"
+      >
         Our main product line, known for its quality, simplicity, and authentic
         origin.
       </p>
@@ -17,28 +19,28 @@ const bestSellers = await getBestSellers();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         bestSellers.map((p) => (
-          <div class="group rounded-lg bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 transition">
-            <div class="relative aspect-auto mb-4 w-full min-h-48  bg-amber-100 flex items-center justify-center overflow-hidden rounded-lg">
-              <span class="absolute top-2 left-2 bg-red-100 text-red-800 text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10">
+          <div class="group rounded-lg bg-[#F7E4CD]/50 hover:bg-[#F7E4CD] border border-[#6F4E37] transition">
+            <div class="relative aspect-auto mb-4 w-full min-h-48 flex items-center justify-center overflow-hidden rounded-lg group-hover:border-b-2 group-hover:border-b-[#6F4E37]">
+              <span class="absolute top-2 left-2 bg-[#E8B4B8] text-[#6F4E37] text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10">
                 Best Seller
               </span>
               <img
                 src={p.picture[0].url}
-                class="w-full h-auto object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out bg-gradient-to-top from-black/40 to-transparent"
+                class="w-full h-auto object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out bg-gradient-to-top from-black/40 to-transparent "
                 loading="lazy"
                 decoding="async"
                 alt={p.title}
               />
             </div>
             <div class="text-left pb-5 px-5">
-              <h3 class="text-xl font-bold mb-2 text-slate-800 leading-tightleading-tight">
+              <h3 class="text-xl font-bold mb-2 text-[#6F4E37] leading-tight">
                 {p.title}
               </h3>
-              <p class="text-sm text-gray-600 mb-4">{p.shortDescription}</p>
+              <p class="text-sm text-[#6F4E37]/90 mb-4">{p.shortDescription}</p>
               <a
                 href={`/products/${p.slug}`}
                 title={`Ver detalle de ${p.title}`}
-                class="inline-flex items-center gap-1 text-sm font-semibold text-red-700 hover:bg-red-700 hover:text-white px-3 py-1.5 rounded-md transition-colors duration-200 ease-in-out"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-[#B85450] hover:bg-[#B85450] hover:text-[#FDFCF7] px-3 py-1.5 rounded-md transition-colors duration-200 ease-in-out"
               >
                 View Details →
               </a>
