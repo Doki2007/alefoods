@@ -1,0 +1,20 @@
+---
+import WhatsappIcon from "#assets/icons/WhatsappIcon.astro";
+
+const phone = "51932120023";
+const message =
+  "Buen día! Me gustaría solicitar más información para comprar un producto.";
+const encodedMessage = encodeURIComponent(message);
+---
+
+<div class="relative z-40">
+  <a
+    class="fixed bottom-20 right-5 rounded-full p-2 bg-green-600 border-2 border-green-600 transition-all ease-in-out duration-250 hover:bg-green-500 hover:border-2 hover:border-green-600 hover:scale-95"
+    href={`https://wa.me/${phone}?text=${encodedMessage}`}
+    aria-label="Shop Now on WhatsApp"
+    title="Shop Now on WhatsApp"
+    target="_blank"
+  >
+    <WhatsappIcon class={"size-8"} />
+  </a>
+</div>
