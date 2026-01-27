@@ -36,7 +36,7 @@ const recipeSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(recipeSchema)} />
 
 <section class="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
-  <div class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
+  <div class="text-xs sm:text-sm text-primary font-semibold mb-3 sm:mb-4">
     <span><a href="/recipes" class="hover:underline">Recipes</a></span> / <span
       class="truncate">{recipeEntry.title}</span
     >
@@ -45,15 +45,14 @@ const recipeSchema = {
   <div
     class="flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-10"
   >
-    <!-- Left: Title, Description, Buttons -->
-    <div class="w-full lg:basis-1/2 lg:self-end">
+    <div class="w-full lg:basis-1/2 lg:self-center">
       <h1
-        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 sm:mb-4"
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 sm:mb-4 text-primary"
       >
         {recipeEntry.title}
       </h1>
       <p
-        class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed"
+        class="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-secondary font-semibold"
       >
         {recipeEntry.description}
       </p>
@@ -64,7 +63,7 @@ const recipeSchema = {
       >
         <button
           id="copy-link-btn"
-          class="bg-white border border-gray-300 text-gray-700 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm sm:text-base cursor-pointer"
+          class="border bg-filter border-primary text-light-bg px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors text-sm sm:text-base cursor-pointer hover:bg-btn-primary"
         >
           <ShareIcon class={"size-4 sm:size-5"} />
           <span class="copy-link-btn-text">Copy Link</span>
@@ -73,7 +72,9 @@ const recipeSchema = {
     </div>
 
     <!-- Right: Recipe Image with Rating -->
-    <div class="w-full lg:w-[450px] lg:shrink-0 lg:ml-auto">
+    <div
+      class="w-full lg:w-[450px] lg:shrink-0 lg:ml-auto ring-2 ring-primary/30 rounded-2xl overflow-hidden"
+    >
       {
         recipeEntry.image && (
           <div class="relative">
@@ -82,19 +83,6 @@ const recipeSchema = {
               alt={recipeEntry.image.name}
               class="w-full h-auto  rounded-lg object-cover"
             />
-            <div class="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-4 sm:py-2 rounded-lg shadow-lg">
-              <div class="flex items-center gap-1">
-                <span class="text-yellow-500 font-bold text-xs sm:text-sm">
-                  4.9
-                </span>
-                <div class="flex text-yellow-500">
-                  <StarIcon class={"size-3 sm:size-4"} />
-                </div>
-                <span class="text-xs sm:text-sm text-gray-600 hidden sm:inline">
-                  (128 reviews)
-                </span>
-              </div>
-            </div>
           </div>
         )
       }
@@ -104,9 +92,11 @@ const recipeSchema = {
   <div class="flex flex-col lg:flex-row gap-4 sm:gap-8 md:gap-12">
     <div class="w-full mx-auto lg:flex lg:basis-1/4">
       <div
-        class="bg-[#FFE2E2] rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 h-fit w-full max-w-sm mx-auto sm:w-fit sm:max-w-none sm:mx-0"
+        class="bg-light-bg ring-2 ring-primary rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 h-fit w-full max-w-sm mx-auto sm:w-fit sm:max-w-none sm:mx-0"
       >
-        <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Ingredients:</h2>
+        <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-primary">
+          Ingredients:
+        </h2>
         <ul class="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
           {
             recipeEntry.ingredientCollection.map((ingredient) => (
@@ -114,9 +104,9 @@ const recipeSchema = {
                 <input
                   type="checkbox"
                   name="ingredient"
-                  class="checkbox mt-1 w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500 shrink-0"
+                  class="checkbox mt-1 w-4 h-4 rounded accent-accent shrink-0"
                 />
-                <span class="ingredient-name text-gray-800 text-sm sm:text-base">
+                <span class="ingredient-name text-primary font-semibold text-sm sm:text-base">
                   {ingredient}
                 </span>
               </li>
@@ -130,59 +120,67 @@ const recipeSchema = {
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10"
       >
-        <div class="bg-teal-50 p-3 sm:p-4 rounded-lg items-center text-center">
+        <div
+          class="bg-light-bg ring-2 ring-primary p-3 sm:p-4 rounded-lg items-center text-center"
+        >
           <div class="flex items-center gap-1 sm:gap-2 mb-1 justify-center">
-            <ClockIcon class={"size-4 sm:size-5 text-teal-600"} />
+            <ClockIcon class={"size-4 sm:size-5 text-accent"} />
 
             <span
-              class="font-semibold text-gray-800 text-xs sm:text-sm md:text-base"
+              class="font-semibold text-primary text-xs sm:text-sm md:text-base"
               >Preparation</span
             >
           </div>
-          <p class="text-gray-600 text-sm sm:text-base">
+          <p class="text-primary font-semibold text-md sm:text-base">
             {recipeEntry.prepTime} min
           </p>
         </div>
 
-        <div class="bg-teal-50 p-3 sm:p-4 rounded-lg items-center text-center">
+        <div
+          class="bg-light-bg ring-2 ring-primary p-3 sm:p-4 rounded-lg items-center text-center"
+        >
           <div class="flex items-center gap-1 sm:gap-2 mb-1 justify-center">
-            <DifficultyIcon class={"size-4 sm:size-5 text-teal-600"} />
+            <DifficultyIcon class={"size-4 sm:size-5 text-accent"} />
             <span
-              class="font-semibold text-gray-800 text-xs sm:text-sm md:text-base"
+              class="font-semibold text-primary text-xs sm:text-sm md:text-base"
               >Difficulty</span
             >
           </div>
-          <p class="text-gray-600 text-sm sm:text-base">
+          <p class="text-primary font-semibold text-sm sm:text-base">
             {recipeEntry.difficulty}
           </p>
         </div>
-        <div class="bg-teal-50 p-3 sm:p-4 rounded-lg items-center text-center">
+        <div
+          class="bg-light-bg ring-2 ring-primary p-3 sm:p-4 rounded-lg items-center text-center"
+        >
           <div class="flex items-center gap-1 sm:gap-2 mb-1 justify-center">
-            <PortionIcon class={"size-4 sm:size-5 text-teal-600"} />
+            <PortionIcon class={"size-4 sm:size-5 text-accent"} />
             <span
-              class="font-semibold text-gray-800 text-xs sm:text-sm md:text-base"
+              class="font-semibold text-primary text-xs sm:text-sm md:text-base"
               >Portions</span
             >
           </div>
-          <p class="text-gray-600 text-sm sm:text-base">
+          <p class="text-primary font-semibold text-sm sm:text-base">
             {recipeEntry.serving} pers
           </p>
         </div>
       </div>
-      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Instructions</h2>
+      <h2 class="text-xl sm:text-2xl text-primary font-bold mb-4 sm:mb-6">
+        Instructions
+      </h2>
       <div class="space-y-4 sm:space-y-5 md:space-y-6 mb-8 md:mb-10">
         {
           recipeEntry.instruction
             .split("\n")
             .filter((step) => step.trim())
             .map((step, index) => (
-              <div class="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 shadow-sm">
+              <div class="bg-white border-2 border-primary/30 rounded-lg p-4 sm:p-5 shadow-sm">
                 <div class="flex items-start gap-3 sm:gap-4">
-                  <div class="shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
+                  <div class="shrink-0 w-7 h-7 sm:w-8 sm:h-8  bg-accent text-light-bg rounded-full flex items-center justify-center font-bold text-md sm:text-base">
                     {index + 1}
                   </div>
                   <div class="flex-1">
-                    <p class="text-gray-800 leading-relaxed text-sm sm:text-base">
+                    <p class="text-primary font-semibold leading-relaxed text-sm sm:text-base">
                       {step.trim()}
                     </p>
                   </div>

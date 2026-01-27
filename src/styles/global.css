@@ -1,10 +1,21 @@
 @import "tailwindcss";
 
-  body {
-    background-color: #fdfcf7;
-  }
-
   @theme {
+
+    --color-primary: #6F4E37;
+    --color-secondary: #A0826D;
+    --color-accent: #B85450;
+    --color-light-bg: #F7E4CD;
+    --color-dark-bg: #0D2C54;
+    --color-body-bg: #FDFCF7;
+    --color-btn-primary: #4A5D23;
+    --color-badge: #E8B4B8;
+    --color-filter: #5A6D33;
+    --color-dark-variant: #15437F;
+
+    --font-sans: "Playfair Display", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", serif;
+
     --animate-scroll: scroll 52s linear infinite;
     
     @keyframes scroll {

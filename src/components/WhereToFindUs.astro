@@ -7,11 +7,11 @@ const scrollLogo = [...logoList, ...logoList];
 
 <section class="my-12 md:my-16">
   <div class="mb-10">
-    <h2 class="text-3xl text-center md:text-4xl font-bold text-[#6F4E37]">
+    <h2 class="text-3xl text-center md:text-4xl font-bold text-primary">
       Where To Find Us
     </h2>
     <p
-      class="my-4 text-center text-lg text-[#A0826D] font-semibold max-w-xl mx-auto"
+      class="my-4 text-center text-lg text-secondary font-semibold max-w-xl mx-auto"
     >
       You can find our products in leading retailt stores across Lima and major
       districs.
@@ -41,13 +41,13 @@ const scrollLogo = [...logoList, ...logoList];
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
       {
         marketList.flatMap((market) => (
-          <div class="flex flex-col items-start justify-start border border-[#6F4E37]/20 p-4 rounded-2xl bg-white/80">
-            <h3 class="text-lg font-bold mb-2 text-[#6F4E37]">{market.name}</h3>
+          <div class="flex flex-col items-start justify-start border border-primary/40 p-4 rounded-2xl bg-white/80">
+            <h3 class="text-lg font-bold mb-2 text-primary">{market.name}</h3>
             <div class="flex flex-col items-start mt-1">
               {market.districts.map((district) => (
                 <div class="flex justify-center items-center gap-2 mb-2 pl-3">
                   <PinIcon class={"size-4"} color={"#B85450"} />
-                  <span class="text-sm font-semibold text-[#A0826D]">
+                  <span class="text-sm font-semibold text-secondary">
                     {district}
                   </span>
                 </div>

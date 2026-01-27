@@ -33,7 +33,7 @@ const recipeListSchema = {
       <button
         type="button"
         data-filter="all"
-        class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-green-500 border-2 border-green-600 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
+        class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-btn-primary border-2 border-btn-primary text-light-bg font-semibold text-sm sm:text-base transition-colors ease-in-out duration-250 hover:bg-filter hover:border-2 hover:border-btn-primary hover:text-light-bg capitalize cursor-pointer"
       >
         All
       </button>
@@ -42,7 +42,7 @@ const recipeListSchema = {
           <button
             type="button"
             data-filter={category}
-            class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-white border-2 border-green-500 text-black font-medium text-sm sm:text-base transition-colors hover:bg-green-500 hover:border-2 hover:border-green-600 hover:text-white capitalize cursor-pointer"
+            class="filter-btn-recipe px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full bg-light-bg border-2 border-btn-primary text-primary font-semibold text-sm sm:text-base transition-colors hover:bg-filter hover:border-2 hover:border-btn-primary hover:text-light-bg capitalize cursor-pointer"
           >
             {category}
           </button>
@@ -60,9 +60,9 @@ const recipeListSchema = {
             class="recipe-card h-full group block transition-all duration-300"
             data-category={recipe.category}
           >
-            <div class="h-full bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div class="h-full bg-light-bg rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
               {recipe.image.url ? (
-                <div class="relative w-full aspect-square overflow-hidden bg-gray-200">
+                <div class="relative w-full aspect-square overflow-hidden">
                   <img
                     src={recipe.image.url}
                     alt={recipe.image.name}
@@ -71,12 +71,12 @@ const recipeListSchema = {
                   />
                 </div>
               ) : (
-                <div class="w-full aspect-square bg-gray-200 flex items-center justify-center">
-                  <span class="text-gray-400 text-sm">No image</span>
+                <div class="w-full aspect-square bg-light-bg flex items-center justify-center">
+                  <span class="text-primary text-sm">No image</span>
                 </div>
               )}
               <div class="p-4 sm:p-5">
-                <h2 class="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
+                <h2 class="text-lg sm:text-xl font-semibold text-primary group-hover:text-accent transition-colors">
                   {recipe.title}
                 </h2>
               </div>
@@ -113,23 +113,19 @@ const recipeListSchema = {
 
     function updateActiveButton(clickedButton: HTMLButtonElement): void {
       filterButtons.forEach((btn) => {
-        // Estado inactivo: bg-white border-green-500 text-black
-        btn.classList.remove("bg-green-500", "border-green-600", "text-white");
-        btn.classList.add("bg-white", "border-green-500", "text-black");
+        // Estado inactivo: bg-white border-btn-primary text-black
+        btn.classList.remove(
+          "bg-btn-primary",
+          "border-btn-primary",
+          "text-light-bg",
+        );
+        btn.classList.add("bg-light-bg", "border-btn-primary", "text-primary");
         btn.ariaPressed = "false";
       });
 
       // Estado activo: bg-green-500 border-green-600 text-white
-      clickedButton.classList.remove(
-        "bg-white",
-        "border-green-500",
-        "text-black",
-      );
-      clickedButton.classList.add(
-        "bg-green-500",
-        "border-green-600",
-        "text-white",
-      );
+      clickedButton.classList.remove("bg-light-bg", "text-primary");
+      clickedButton.classList.add("bg-filter", "text-light-bg");
       clickedButton.ariaPressed = "true";
     }
 

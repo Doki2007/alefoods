@@ -46,12 +46,12 @@ const productSchema = {
   <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12">
     <div class="w-full lg:basis-lg lg:max-w-lg">
       <div class="gallery-container justify-items-center overflow-hidden">
-        <div class="main-image rounded-xl">
+        <div class="main-image rounded-2xl mb-4">
           <img
             id="big-image"
             src={productEntry.picture[0].url}
             alt={productEntry.picture[0].name}
-            class="w-full h-auto object-cover aspect-square rounded-4xl sm:aspect-4/3 md:aspect-square"
+            class="w-full h-auto object-cover aspect-square sm:aspect-4/3 md:aspect-square border-2 border-accent rounded-2xl"
           />
         </div>
         <div
@@ -62,7 +62,7 @@ const productSchema = {
               <img
                 src={picture.url}
                 alt={picture.name}
-                class="mini w-full h-20 sm:h-24 md:h-28 lg:h-32 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
+                class="mini w-full h-20 sm:h-24 md:h-28 lg:h-32 object-cover rounded-2xl cursor-pointer hover:opacity-80 transition-opacity "
               />
             ))
           }
@@ -72,14 +72,14 @@ const productSchema = {
 
     <div class="flex-1 w-full lg:px-8 space-y-6 sm:space-y-8">
       <div class="space-y-4 sm:space-y-6 mb-12 sm:mb-16 md:mb-24">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
           {productEntry.title}
         </h1>
-        <p class="text-sm sm:text-base md:text-md">
+        <p class="text-sm sm:text-base md:text-md font-semibold text-secondary">
           {productEntry.description}
         </p>
         <div class="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
-          <span class="text-2xl sm:text-3xl font-bold"
+          <span class="text-2xl sm:text-3xl font-bold text-accent"
             >S/ {productEntry.price}.00</span
           >
         </div>
@@ -88,17 +88,20 @@ const productSchema = {
           class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6"
         >
           <div
-            class="qty-container flex items-center justify-between bg-gray-200 rounded-3xl gap-3 w-full sm:w-auto"
+            class="qty-container flex items-center justify-between bg-secondary border border-secondary rounded-3xl gap-3 w-full sm:w-auto"
           >
             <span
               data-action="decrease"
-              class="qty-btn border border-gray-300 px-3 py-1 sm:px-4 sm:py-2 bg-white rounded-full items-center hover:bg-gray-50 transition-colors cursor-pointer select-none"
+              class="qty-btn border border-light-bg px-3 py-1 sm:px-4 sm:py-2 bg-secondary rounded-full items-center hover:bg-light-bg transition-colors cursor-pointer select-none text-light-bg hover:text-primary font-bold hover:border-secondary"
               >-</span
             >
-            <span class="quantity text-center select-none">1</span>
+            <span
+              class="quantity text-center select-none text-light-bg text-xl pb-1.5 font-bold"
+              >1</span
+            >
             <span
               data-action="increase"
-              class="qty-btn border border-gray-300 px-3 py-1 sm:px-4 sm:py-2 bg-white rounded-full items-center hover:bg-gray-50 transition-colors cursor-pointer select-none"
+              class="qty-btn border border-light-bg px-3 py-1 sm:px-4 sm:py-2 bg-secondary rounded-full items-center hover:bg-light-bg transition-colors cursor-pointer select-none text-light-bg hover:text-primary font-bold hover:border-secondary"
               >+</span
             >
           </div>
@@ -106,7 +109,7 @@ const productSchema = {
           <button
             id="whatsapp-btn"
             data-product-title={productEntry.title}
-            class="flex-1 sm:flex-initial w-full sm:w-auto border-2 border-green-600 rounded-full bg-green-600 text-black py-2.5 sm:py-3 px-6 hover:bg-green-500 hover:border-green-600 hover:text-white transition-all duration-300 ease-in-out cursor-pointer font-semibold"
+            class="flex-1 sm:flex-initial w-full sm:w-auto border-2 border-btn-primary rounded-full bg-btn-primary text-light-bg py-2.5 sm:py-3 px-6 transition-all duration-300 ease-in-out cursor-pointer font-semibold hover:border-primary hover:bg-primary hover:text-body-bg"
           >
             <div class="flex justify-center items-center gap-2">
               <WhatsappIcon class={"size-7"} />
@@ -117,60 +120,15 @@ const productSchema = {
       </div>
 
       <div
-        class="accordion w-full max-w-2xl mx-auto p-4 sm:p-6 bg-gray-300/30 rounded-2xl sm:rounded-3xl border border-gray-300/50"
+        class="accordion w-full max-w-2xl mx-auto p-4 sm:p-6 bg-light-bg/80 rounded-2xl sm:rounded-3xl border border-light-bg/50"
       >
         <div
-          class="accordion-header flex justify-between items-center mb-4 border-b pb-2 cursor-pointer"
+          class="accordion-header flex justify-between items-center mb-4 border-b border-b-primary pb-2 cursor-pointer"
         >
-          <h2 class="text-base sm:text-lg font-bold text-gray-800 pr-2">
-            Nutritional Information (per 100g)
-          </h2>
-          <ChevronIcon class={"chevron size-5 shrink-0"} />
-        </div>
-
-        <div
-          class="accordion-content hidden grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-16 gap-y-2"
-        >
-          <div class="flex flex-col gap-2">
-            {
-              productEntry.nutritionInfo.map((nutrition) => (
-                <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
-                  <span class="text-sm sm:text-base text-gray-500">
-                    {nutrition.label}
-                  </span>
-                  <span class="text-sm sm:text-base font-medium">
-                    {nutrition.value}
-                  </span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="accordion w-full max-w-2xl mx-auto p-4 sm:p-6 bg-gray-300/30 rounded-2xl sm:rounded-3xl border border-gray-300/50"
-      >
-        <div
-          class="accordion-header flex justify-between items-center mb-4 border-b pb-2 cursor-pointer"
-        >
-          <h2 class="text-base sm:text-lg font-bold text-gray-800 pr-2">
+          <h2 class="text-base sm:text-lg font-bold text-primary pr-2">
             Benefits
           </h2>
-          <svg
-            class="chevron size-5 shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            >
-            </path>
-          </svg>
+          <ChevronIcon class={"chevron size-5 shrink-0  text-primary"} />
         </div>
 
         <div
@@ -179,12 +137,44 @@ const productSchema = {
           {
             productEntry.feature.map((feat) => {
               return (
-                <div class="flex justify-between border-b border-dotted border-gray-300 pb-1">
-                  <span class="text-sm sm:text-base text-gray-500">{feat}</span>
+                <div class="flex justify-between border-b border-dotted border-b-white pb-1">
+                  <span class="text-sm sm:text-base font-semibold text-primary">
+                    {feat}
+                  </span>
                 </div>
               );
             })
           }
+        </div>
+      </div>
+
+      <div
+        class="accordion w-full max-w-2xl mx-auto p-4 sm:p-6 bg-light-bg rounded-2xl sm:rounded-3xl border border-light-bg/50"
+      >
+        <div
+          class="accordion-header flex justify-between items-center mb-4 border-b border-b-primary pb-2 cursor-pointer"
+        >
+          <h2 class="text-base sm:text-lg font-bold text-primary pr-2">
+            Nutritional Information (per 100g)
+          </h2>
+          <ChevronIcon class={"chevron size-5 shrink-0  text-primary"} />
+        </div>
+
+        <div
+          class="accordion-content hidden grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-16 gap-y-2"
+        >
+          <div class="flex flex-col gap-2">
+            {
+              productEntry.nutritionInfo.map((nutrition) => (
+                <div class="flex justify-between border-b border-dotted border-b-white pb-1 font-semibold text-primary">
+                  <span class="text-sm sm:text-base">{nutrition.label}</span>
+                  <span class="text-sm sm:text-base text-secondary">
+                    {nutrition.value}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
@@ -205,7 +195,7 @@ const productSchema = {
 
     if (!container || !bigImage) return;
 
-    thumbnails[0]?.classList.add("ring-2", "ring-green-500", "opacity-100");
+    thumbnails[0]?.classList.add("ring-2", "ring-accent", "opacity-100");
 
     container.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
@@ -219,10 +209,11 @@ const productSchema = {
         bigImage.alt = mini.alt;
 
         // Feedback visual: quitamos el anillo a todas y se lo damos a la elegida
-        thumbnails.forEach((t) =>
-          t.classList.remove("ring-2", "ring-green-500", "opacity-100"),
-        );
-        mini.classList.add("ring-2", "ring-green-500", "opacity-100");
+        thumbnails.forEach((t) => {
+          t.classList.remove("ring-2", "ring-accent", "opacity-100");
+        });
+        mini.classList.add("ring-2", "ring-accent", "opacity-100");
+
         // Opcional: una pequeña animación de entrada
         bigImage.animate([{ opacity: 0.5 }, { opacity: 1 }], { duration: 250 });
       }
